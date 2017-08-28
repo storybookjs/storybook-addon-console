@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1504036403487" clover="3.2.0">
+  <project timestamp="1504036403487" name="All files">
+    <metrics statements="43" coveredstatements="43" conditionals="26" coveredconditionals="26" methods="12" coveredmethods="12" elements="81" coveredelements="81" complexity="0" loc="43" ncloc="43" packages="1" files="1" classes="1">
+      <file name="index.js" path="/home/usulpro/WebDev/_sm-react/storybook-addon-console/src/index.js">
+        <metrics statements="43" coveredstatements="43" conditionals="26" coveredconditionals="26" methods="12" coveredmethods="12"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="21" count="21" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="34" count="28" type="cond" truecount="2" falsecount="0"/>
+        <line num="35" count="12" type="stmt"/>
+        <line num="36" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="39" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="40" count="9" type="stmt"/>
+        <line num="41" count="23" type="cond" truecount="2" falsecount="0"/>
+        <line num="44" count="7" type="stmt"/>
+        <line num="48" count="21" type="stmt"/>
+        <line num="49" count="21" type="stmt"/>
+        <line num="51" count="21" type="stmt"/>
+        <line num="52" count="8" type="stmt"/>
+        <line num="53" count="8" type="stmt"/>
+        <line num="54" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="55" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="58" count="21" type="stmt"/>
+        <line num="59" count="2" type="stmt"/>
+        <line num="60" count="2" type="stmt"/>
+        <line num="61" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="62" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="65" count="21" type="stmt"/>
+        <line num="66" count="2" type="stmt"/>
+        <line num="67" count="2" type="stmt"/>
+        <line num="68" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="69" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="72" count="21" type="stmt"/>
+        <line num="73" count="2" type="stmt"/>
+        <line num="74" count="2" type="stmt"/>
+        <line num="75" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="76" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="78" count="1" type="stmt"/>
+        <line num="82" count="1" type="stmt"/>
+        <line num="85" count="20" type="cond" truecount="2" falsecount="0"/>
+        <line num="86" count="19" type="stmt"/>
+        <line num="90" count="19" type="stmt"/>
+        <line num="91" count="19" type="stmt"/>
+        <line num="93" count="1" type="stmt"/>
+        <line num="94" count="1" type="stmt"/>
+        <line num="95" count="1" type="stmt"/>
+      </file>
+    </metrics>
+  </project>
+</coverage>
