@@ -2,6 +2,7 @@
   "name": "storybook-addon-console",
   "version": "0.1.0.alpha",
   "private": true,
+  "author": "Oleg Proskurin <oss@usul.su> (https://github.com/UsulPro)",
   "dependencies": {
     "global": "^4.3.2"
   },
@@ -45,6 +46,8 @@
     "react-test-renderer": "^15.6.1"
   },
   "peerDependencies": {
-    "@storybook/addon-actions": "^3.0.0"
+    "@storybook/addon-actions": "^3.0.0",
+    "prop-types": "*",
+    "react": "*"
   }
 }

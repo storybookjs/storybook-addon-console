@@ -1,5 +1,8 @@
+import React from 'react';
 import window from 'global/window';
 import { action } from '@storybook/addon-actions';
+
+import ReactDecorator from './react-decorator';
 
 const logger = console;
 const cLogger = {
@@ -17,6 +20,8 @@ const addonOptions = {
   warn: 'warn',
   error: 'error',
 };
+
+let currentOptions = addonOptions;
 
 const createLogger = options => ({
   log: action(options.log),
@@ -44,7 +49,7 @@ const shouldDisplay = (messages, exclude, include) => {
   return messages;
 };
 
-function globalScope(options) {
+function setScope(options) {
   const { panelExclude, panelInclude, consoleExclude, consoleInclude } = options;
   const aLogger = createLogger(options);
 
@@ -79,18 +84,63 @@ function globalScope(options) {
   };
 }
 
-globalScope(addonOptions);
+setScope(addonOptions);
 
-export function setConsoleOptions(optionsOrFn) {
-  if (typeof optionsOrFn === 'object') {
+const detectOptions = prop => {
+  if (!prop) return addonOptions;
+  if (typeof prop === 'object') {
     const newOptions = {
-      ...addonOptions,
-      ...optionsOrFn,
+      // ...addonOptions, // remove
+      ...prop,
     };
-    globalScope(newOptions);
     return newOptions;
   }
-  const newOptions = { ...optionsOrFn(addonOptions) };
-  globalScope(newOptions);
+  const newOptions = { ...prop(currentOptions) }; // check: should it be currentOptions?
   return newOptions;
+};
+
+export function setConsoleOptions(optionsOrFn) {
+  const newOptions = detectOptions(optionsOrFn);
+  currentOptions = {
+    ...currentOptions,
+    ...newOptions,
+  };
+  setScope(currentOptions);
+  return currentOptions;
+}
+
+function addConsole(storyFn, context, consoleOptions) {
+  const prevOptions = { ...currentOptions };
+  const logNames = context
+    ? {
+        log: `${context.kind}/${context.story}`,
+        warn: `${context.kind}/${context.story} warn`,
+        error: `${context.kind}/${context.story} error`,
+      }
+    : {};
+
+  const options = {
+    ...currentOptions,
+    ...logNames,
+    ...consoleOptions,
+  };
+
+  setScope(options);
+  const story = storyFn();
+  const wrapedStory = (
+    <ReactDecorator
+      story={story}
+      onMount={() => setScope(options)}
+      onUnMount={() => setScope(currentOptions)}
+    />
+  );
+
+  currentOptions = prevOptions;
+  setScope(currentOptions);
+  return wrapedStory;
+}
+
+export function withConsole(optionsOrFn) {
+  const newOptions = detectOptions(optionsOrFn);
+  return storyFn => context => addConsole(storyFn, context, {});
 }
