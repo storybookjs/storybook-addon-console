@@ -1,6 +1,6 @@
 {
-  "name": "storybook-addon-console",
-  "version": "0.1.0.alpha",
+  "version": "0.1.0-alpha",
+  "name": "@storybook/addon-console",
   "private": true,
   "author": "Oleg Proskurin <oss@usul.su> (https://github.com/UsulPro)",
   "dependencies": {
@@ -8,9 +8,12 @@
   },
   "scripts": {
     "start": "start-storybook -p 9009",
+    "prepublish": "",
+    "build:tests": "rm -rdf .jest-dist && babel ./src -d ./.jest-dist -s",
     "build-storybook": "build-storybook",
     "lint": "eslint ./src",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "debug": "node --debug-brk --inspect npm test"
   },
   "devDependencies": {
     "@storybook/addon-links": "^3.0.0",

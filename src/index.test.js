@@ -195,7 +195,7 @@ describe('addon Console', () => {
     };
 
     it('should work withConsole', () => {
-      const wrappedStory = withConsole()(storyFn)(context)
+      const wrappedStory = withConsole()(storyFn)(context);
     });
 
   });

@@ -5,9 +5,10 @@
 
 # testing
 /.coverage
+/.jest-dist
 
 # production
-/build
+/dist
 
 # misc
 .DS_Store
