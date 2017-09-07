@@ -1,3 +1,10 @@
+/** 
+ * It handles `console.log`, `console.warn` and `console.error` methods and uncatched errors. By default it just reflects all console messages in the Action Logger Panel (should be installed as a peerDependency) except [HMR] logs.
+ * @module @storybook/addon-console 
+ * 
+ * 
+ */
+
 import React from 'react';
 import window from 'global/window';
 import { action } from '@storybook/addon-actions';
@@ -11,6 +18,16 @@ const cLogger = {
   error: logger.error,
 };
 
+/**
+ * @typedef {Object} addonOptions - This options could be passed to {@link setConsoleOptions} or {@link withConsole}
+ * @property {RegExp[]} [panelExclude = [/[HMR]/]] - Optional. Anything matched to at least one of regular expressions will be excluded from output to Action Logger Panel
+ * @property {RegExp[]} [panelInclude = []] - Optional. If set, only matched outputs will be shown in Action Logger. Higher priority than `panelExclude`.
+ * @property {RegExp[]} [consoleExclude = []] - Optional. Anything matched to at least one of regular expressions will be excluded from DevTool console output
+ * @property {RegExp[]} [consoleInclude = []] - Optional. If set, only matched outputs will be shown in console. Higher priority than `consoleExclude`.
+ * @property {string} [log = console] - Optional. The marker to display `console.log` outputs in Action Logger
+ * @property {string} [warn = warn] - Optional. The marker to display warnings in Action Logger
+ * @property {string} [error = error] - Optional. The marker to display errors in Action Logger
+ */
 const addonOptions = {
   panelExclude: [/\[HMR\]/],
   panelInclude: [],
@@ -29,12 +46,6 @@ const createLogger = options => ({
   error: action(options.error),
 });
 
-/**
- * filters messages accordingly to include/exclude settings
- * @param {*} messages 
- * @param {*} exclude 
- * @param {*} include 
- */
 const shouldDisplay = (messages, exclude, include) => {
   if (include.length) {
     return messages.filter(
@@ -99,6 +110,35 @@ const detectOptions = prop => {
   return newOptions;
 };
 
+/**
+ * This callback could be passed to {@link setConsoleOptions} or {@link withConsole}
+ * 
+ * @example 
+ * import { withConsole } from `@storybook/addon-console`;
+ * 
+ * const optionsCallback = (options) => ({panelExclude: [...options.panelExclude, /Warning/]});
+ * addDecorator((storyFn, context) => withConsole(optionsCallback)(storyFn)(context));
+ *
+ * @callback optionsCallback
+ * @param {addonOptions} currentOptions - the current {@link addonOptions}
+ * @return {addonOptions} - new {@link addonOptions}
+ */
+
+/**
+ * Set addon options and returns a new one
+ * @param {addonOptions|requestCallback} optionsOrFn 
+ * @return {addonOptions}
+ * @see addonOptions
+ * @see requestCallback
+ * 
+ * @example
+import { setConsoleOptions } from '@storybook/addon-console';
+
+const panelExclude = setConsoleOptions({}).panelExclude;
+setConsoleOptions({
+  panelExclude: [...panelExclude, /deprecated/],
+});
+ */
 export function setConsoleOptions(optionsOrFn) {
   const newOptions = detectOptions(optionsOrFn);
   currentOptions = {
@@ -140,6 +180,31 @@ function addConsole(storyFn, context, consoleOptions) {
   return wrapedStory;
 }
 
+/**
+ * Wraps your stories with specified addon options.
+ * If you don't pass {`log`, `warn`, `error`} in options argument it'll create them from context for each story individually. Hence you'll see from what exact story you got an log or error. You can log from component's lifecycle methods or within your story.
+ * @param {addonOptions|requestCallback} [optionsOrFn]
+ * @see addonOptions
+ * @see requestCallback
+ * 
+ * @example
+ * import { storiesOf } from '@storybook/react';
+ * import { withConsole } from '@storybook/addon-console';
+ * 
+ * storiesOf('withConsole', module)
+ *  .addDecorator((storyFn, context) => withConsole()(storyFn)(context))
+ *  .add('with Log', () => <Button onClick={() => console.log('Data:', 1, 3, 4)}>Log Button</Button>)
+ *  .add('with Warning', () => <Button onClick={() => console.warn('Data:', 1, 3, 4)}>Warn Button</Button>)
+ *  .add('with Error', () => <Button onClick={() => console.error('Test Error')}>Error Button</Button>)
+ *  .add('with Uncatched Error', () =>
+ *    <Button onClick={() => console.log('Data:', T.buu.foo)}>Throw Button</Button>
+ *  )
+ // Action Logger Panel:
+ // withConsole/with Log: ["Data:", 1, 3, 4]
+ // withConsole/with Warning warn: ["Data:", 1, 3, 4]
+ // withConsole/with Error error: ["Test Error"]
+ // withConsole/with Uncatched Error error: ["Uncaught TypeError: Cannot read property 'foo' of undefined", "http://localhost:9009/static/preview.bundle.js", 51180, 42, Object]
+ */
 export function withConsole(optionsOrFn) {
   const newOptions = detectOptions(optionsOrFn);
   return storyFn => context => addConsole(storyFn, context, {});

@@ -1,0 +1,9 @@
+{
+    "verbose": false,
+    "ignore": ["*.test.js"],
+    "watch": [
+        "src",
+        "docs"
+      ],
+    "ext": "js hbs"
+  }

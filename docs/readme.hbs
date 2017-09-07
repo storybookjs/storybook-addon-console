@@ -1,0 +1,92 @@
+# Storybook Addon Console
+
+Redirects console output into Action Logger Panel
+
+## Why
+
+There some cases when you can't / don't want / forgot to keep browser console opened. This addon helps you to get all console output in your storybook. In other cases, you might find it difficult to extract the desired information in the information noise issued by the console or to determine which component in what state gives the message. With this addon you can control **what** you see and **where** you see. 
+
+We assume the following possible applications:
+
+- Mobile devices. You might want to make console output reacheble for users when they need to work with your storybook from mobile browsers
+
+- Small screens. You can save your screen space keeping browser console closed
+
+- To filter your console output. You can independently configure both action logger and real console output in a wide range.
+
+- To associate a console messages with a specific components/stories. You can see which story emits which message
+
+- To output some data into Action Logger from your deep components without importing `addon-actions` for that. 
+
+[![storybook-addon-console](docs/storybook-addon-console.png)](#)
+
+### Install
+
+```shell
+npm i @storybook/addon-console --save-dev
+```
+
+### Quick Start
+
+Just import it in your storybook config.js:
+
+```js
+// config.js
+
+import '@storybook/addon-console';
+```
+
+That's all. You'll start to receive all console messages, warnings, errors in your action logger panel. Everything except HMR logs. If you want to enable HMR messages do the following:
+
+```js
+// config.js
+
+import { setConsoleOptions } from '@storybook/addon-console';
+
+setConsoleOptions({
+  panelExclude: [],
+});
+```
+
+You'll receive console outputs as a `console`, `warn` and `error` actions in the panel. You might want to know from what stories they come. In this case add `withConsole` decorator:
+
+```js
+// config.js
+
+import { addDecorator } from '@storybook/react';
+import { withConsole } from '@storybook/addon-console';
+
+addDecorator((storyFn, context) => withConsole()(storyFn)(context));
+```
+
+After that your messages in Action Logger will be prefixed with the story path, like `molecules/atoms/electron: ["ComponentDidMount"]` or `molecules/atoms/electron error: ["Warning: Failed prop type..."]`. You can setup addon behavior by passing options to `withConsole` or `setConsoleOptions` methods, both have the same API.
+
+
+## API
+{{>main}}
+
+
+## Contributing
+
+`npm start` runs example Storybook. Then you can edit source code located in the `src` folder and example storybook in the `stories` folder.
+
+### Run tests
+
+Run `npm run test`. It starts jest test in `watch` mode.
+
+### Test coverage
+
+After runnig tests you can explore coverage details in `.coverage/lcov-report/index.html`
+
+### Debugging
+
+If you're using VSCode you can debug tests and source by launching `Jest Tests` task from Debug Menu. It allows to set breakpoints in `*.test.js` and `*.js` files.
+
+### Readme editing
+
+Please, don't edit this `README.md` directly. Run `npm run dev:docs` and change `docs/readme.hbs` and JSDoc comments withing `src` instead.
+
+## Credits
+
+<div align="left" style="height: 16px;"><sub>Created with ❤︎ to <b>React</b> and <b>React Storybook</b> by <a href="https://twitter.com/UsulPro">@UsulPro</a> and     <a href="https://github.com/react-theming">React Theming</a>.</sub></div>
+
