@@ -12,6 +12,7 @@
     "build:tests": "rm -rdf .jest-dist && babel ./src -d ./.jest-dist -s",
     "build:docs": "jsdoc2md -t docs/readme.hbs src/*.js  > README.md; echo",
     "build:storybook": "build-storybook",
+    "deploy:storybook": "storybook-to-ghpages",
     "lint": "eslint ./src",
     "test": "jest --watch",
     "dev:docs": "nodemon --config docs/nodemon.json -x 'npm run build:docs'",
@@ -20,6 +21,7 @@
   "devDependencies": {
     "@storybook/addon-links": "^3.0.0",
     "@storybook/react": "^3.2.8",
+    "@storybook/storybook-deployer": "^2.0.0",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",

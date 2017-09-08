@@ -1,3 +1,6 @@
+[![npm version](https://badge.fury.io/js/%40storybook%2Faddon-console.svg)](https://badge.fury.io/js/%40storybook%2Faddon-console)
+[![Live demo](https://img.shields.io/badge/Live%20Demo-%20Storybook-brightgreen.svg)](https://sm-react.github.io/storybook-addon-console/)
+
 # Storybook Addon Console
 
 Redirects console output into Action Logger Panel
