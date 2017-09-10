@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 const consoleLog = jest.fn();
 const consoleWarn = jest.fn();
@@ -30,17 +32,17 @@ describe('addon Console', () => {
   const logString = 'Storybook is awesome!';
   const logHMR = '[HMR] connected';
 
+  const addonOptions = {
+    panelExclude: [/\[HMR\]/],
+    panelInclude: [],
+    consoleExclude: [],
+    consoleInclude: [],
+    log: 'console',
+    warn: 'warn',
+    error: 'error',
+  };
   describe('global scope', () => {
     describe('check options `setConsoleOptions`', () => {
-      const addonOptions = {
-        panelExclude: [/\[HMR\]/],
-        panelInclude: [],
-        consoleExclude: [],
-        consoleInclude: [],
-        log: 'console',
-        warn: 'warn',
-        error: 'error',
-      };
       it('should return default options', () => {
         const defaultOptions = setConsoleOptions({});
         expect(defaultOptions).toEqual(addonOptions);
@@ -72,7 +74,7 @@ describe('addon Console', () => {
 
       beforeEach(() => {
         // reset options to default
-        setConsoleOptions();
+        setConsoleOptions(addonOptions);
       });
 
       it('should output `console.log` to panel and console', () => {
@@ -188,15 +190,49 @@ describe('addon Console', () => {
   });
 
   describe('withConsole', () => {
-    const storyFn = () => <div>Hello</div>;
+    class Verbose extends React.Component {
+      constructor(props) {
+        super(props);
+        props.initLog();
+        logger.log('Constructor');
+      }
+      render() {
+        return <div>Hello</div>;
+      }
+    }
+    Verbose.propTypes = {
+      initLog: PropTypes.func.isRequired,
+    };
+
+    const storyFn = () => <Verbose initLog={() => logger.log(logString)} />;
     const context = {
       kind: 'StoryKind',
       story: 'JestStory',
     };
+    const root = global.document.createElement('div');
 
-    it('should work withConsole', () => {
-      const wrappedStory = withConsole()(storyFn)(context);
+    beforeEach(() => {
+      // reset options to default
+      setConsoleOptions(addonOptions);
     });
 
+    it('should work with context', () => {
+      const wrappedStory = withConsole()(storyFn)(context);
+      ReactDOM.render(wrappedStory, root);
+      ReactDOM.unmountComponentAtNode(root);
+    });
+
+    it('should work without context', () => {
+      const wrappedStory = withConsole()(storyFn)();
+      ReactDOM.render(wrappedStory, root);
+      ReactDOM.unmountComponentAtNode(root);
+    });
+
+    it('should wrap storyFn', () => {
+      const fakeFn = () => logger.log(logString);
+      withConsole()(fakeFn)(context);
+      expect(aLogResults.msg).toBe('StoryKind/JestStory error');
+      expect(consoleLog.mock.calls[0][0]).toBe(logString);
+    });
   });
 });

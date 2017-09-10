@@ -19,7 +19,7 @@ const cLogger = {
 };
 
 /**
- * @typedef {Object} addonOptions - This options could be passed to {@link setConsoleOptions} or {@link withConsole}
+ * @typedef {Object} addonOptions - This options could be passed to [withConsole]{@link #storybookaddon-consolewithconsoleoptionsorfn--function} or [setConsoleOptions]{@link #module_@storybook/addon-console.setConsoleOptions}
  * @property {RegExp[]} [panelExclude = [/[HMR]/]] - Optional. Anything matched to at least one of regular expressions will be excluded from output to Action Logger Panel
  * @property {RegExp[]} [panelInclude = []] - Optional. If set, only matched outputs will be shown in Action Logger. Higher priority than `panelExclude`.
  * @property {RegExp[]} [consoleExclude = []] - Optional. Anything matched to at least one of regular expressions will be excluded from DevTool console output
@@ -98,7 +98,7 @@ function setScope(options) {
 setScope(addonOptions);
 
 const detectOptions = prop => {
-  if (!prop) return addonOptions;
+  if (!prop) return {};
   if (typeof prop === 'object') {
     const newOptions = {
       // ...addonOptions, // remove
@@ -126,10 +126,10 @@ const detectOptions = prop => {
 
 /**
  * Set addon options and returns a new one
- * @param {addonOptions|requestCallback} optionsOrFn 
+ * @param {addonOptions|optionsCallback} optionsOrFn 
  * @return {addonOptions}
  * @see addonOptions
- * @see requestCallback
+ * @see optionsCallback
  * 
  * @example
 import { setConsoleOptions } from '@storybook/addon-console';
@@ -183,9 +183,10 @@ function addConsole(storyFn, context, consoleOptions) {
 /**
  * Wraps your stories with specified addon options.
  * If you don't pass {`log`, `warn`, `error`} in options argument it'll create them from context for each story individually. Hence you'll see from what exact story you got an log or error. You can log from component's lifecycle methods or within your story.
- * @param {addonOptions|requestCallback} [optionsOrFn]
- * @see addonOptions
- * @see requestCallback
+ * @param {addonOptions|optionsCallback} [optionsOrFn]
+ * @see [addonOptions]{@link #storybookaddon-consolesetconsoleoptionsoptionsorfn--addonoptions}
+ * @see [optionsCallback]{@link #storybookaddon-consoleoptionscallback--addonoptions}
+ * @return {function} wrappedStoryFn
  * 
  * @example
  * import { storiesOf } from '@storybook/react';
@@ -207,5 +208,5 @@ function addConsole(storyFn, context, consoleOptions) {
  */
 export function withConsole(optionsOrFn) {
   const newOptions = detectOptions(optionsOrFn);
-  return storyFn => context => addConsole(storyFn, context, {});
+  return storyFn => context => addConsole(storyFn, context, newOptions);
 }
