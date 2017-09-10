@@ -10,4 +10,6 @@
 .babelrc
 .eslintrc.js
 jest.config.js
-
+.scripts
+docs
+storybook-addon-console*.tgz
