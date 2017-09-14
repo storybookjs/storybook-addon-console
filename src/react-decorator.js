@@ -19,3 +19,7 @@ ReactDecorator.propTypes = {
   onUnMount: PropTypes.func.isRequired,
 };
 export default ReactDecorator;
+
+export function reactStory(story, onMount, onUnMount) {
+  return <ReactDecorator story={story} onMount={onMount} onUnMount={onUnMount} />;
+}

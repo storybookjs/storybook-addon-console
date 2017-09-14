@@ -5,11 +5,10 @@
  * 
  */
 
-import React from 'react';
 import window from 'global/window';
 import { action } from '@storybook/addon-actions';
 
-import ReactDecorator from './react-decorator';
+import { reactStory } from './react-decorator';
 
 const logger = console;
 const cLogger = {
@@ -149,6 +148,18 @@ export function setConsoleOptions(optionsOrFn) {
   return currentOptions;
 }
 
+function handleStoryLogs() {
+  switch (window.STORYBOOK_ENV) {
+    case 'react':
+      return reactStory;
+    default:
+      logger.warn(
+        `Warning! withConsole doesn't support @storybook/${window.STORYBOOK_ENV}. Use setConsoleOptions instead`
+      );
+      return story => story;
+  }
+}
+
 function addConsole(storyFn, context, consoleOptions) {
   const prevOptions = { ...currentOptions };
   const logNames = context
@@ -167,17 +178,12 @@ function addConsole(storyFn, context, consoleOptions) {
 
   setScope(options);
   const story = storyFn();
-  const wrapedStory = (
-    <ReactDecorator
-      story={story}
-      onMount={() => setScope(options)}
-      onUnMount={() => setScope(currentOptions)}
-    />
-  );
+  const wrapStory = handleStoryLogs();
+  const wrappedStory = wrapStory(story, () => setScope(options), () => setScope(currentOptions));
 
   currentOptions = prevOptions;
   setScope(currentOptions);
-  return wrapedStory;
+  return wrappedStory;
 }
 
 /**

@@ -214,6 +214,7 @@ describe('addon Console', () => {
     beforeEach(() => {
       // reset options to default
       setConsoleOptions(addonOptions);
+      global.window.STORYBOOK_ENV = 'react';
     });
 
     it('should work with context', () => {
@@ -227,12 +228,57 @@ describe('addon Console', () => {
       ReactDOM.render(wrappedStory, root);
       ReactDOM.unmountComponentAtNode(root);
     });
+    describe('React', () => {
+      beforeEach(() => {
+        global.window.STORYBOOK_ENV = 'react';
+      });
 
-    it('should wrap storyFn', () => {
-      const fakeFn = () => logger.log(logString);
-      withConsole()(fakeFn)(context);
-      expect(aLogResults.msg).toBe('StoryKind/JestStory error');
-      expect(consoleLog.mock.calls[0][0]).toBe(logString);
+      it('should wrap storyFn', () => {
+        const fakeFn = () => {
+          logger.log(logString);
+          return <div />;
+        };
+        withConsole()(fakeFn)(context);
+        expect(aLogResults.data).toEqual([logString]);
+        expect(aLogResults.msg).toBe('StoryKind/JestStory');
+        expect(consoleLog.mock.calls[0][0]).toBe(logString);
+      });
+    });
+
+    describe('Vue', () => {
+      beforeEach(() => {
+        global.window.STORYBOOK_ENV = 'vue';
+      });
+
+      xit('should wrap storyFn', () => {
+        const fakeFn = () => {
+          logger.log(logString);
+          return <div />;
+        };
+        withConsole()(fakeFn)(context);
+        expect(aLogResults.data).toEqual([logString]);
+        expect(aLogResults.msg).toBe('StoryKind/JestStory');
+        expect(consoleLog.mock.calls[0][0]).toBe(logString);
+      });
+    });
+
+    describe('Covfefe', () => {
+      beforeEach(() => {
+        global.window.STORYBOOK_ENV = 'covfefe';
+      });
+
+      it('should warn for unknown framework', () => {
+        const fakeFn = () => {
+          logger.log(logString);
+          return <div />;
+        };
+        withConsole()(fakeFn)(context);
+        expect(aLogResults.data[0]).toEqual(
+          expect.stringContaining("withConsole doesn't support @storybook/covfefe")
+        );
+        expect(aLogResults.msg).toBe('StoryKind/JestStory warn');
+        expect(consoleLog.mock.calls[0][0]).toBe(logString);
+      });
     });
   });
 });
