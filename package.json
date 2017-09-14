@@ -1,7 +1,6 @@
 {
-  "version": "0.1.0-alpha",
+  "version": "1.0.0",
   "name": "@storybook/addon-console",
-  "private": true,
   "author": "Oleg Proskurin <oss@usul.su> (https://github.com/UsulPro)",
   "dependencies": {
     "global": "^4.3.2"
@@ -18,6 +17,16 @@
     "test:publish": "npm pack",
     "dev:docs": "nodemon --config docs/nodemon.json -x 'npm run build:docs'",
     "debug": "node --debug-brk --inspect npm test"
+  },
+  "main": "dist/index",
+  "homepage": "https://github.com/storybooks/storybook-addon-console",
+  "bugs": {
+    "url": "https://github.com/storybooks/storybook-addon-console/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/storybooks/storybook-addon-console.git"
   },
   "devDependencies": {
     "@storybook/addon-links": "^3.0.0",
