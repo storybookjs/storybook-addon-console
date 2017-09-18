@@ -7,17 +7,17 @@ Redirects console output into Action Logger Panel
 
 ## Why
 
-There're some cases when you can't / don't want / forgot to keep browser console opened. This addon helps you to get all console output in your storybook. In other cases, you might find it difficult to extract the desired information in the information noise issued by the console or to determine which component in what state gives the message. With this addon you can control **what** you see and **where** you see. 
+There're some cases when you can't / don't want / forgot to keep browser console opened. This addon helps you to get all console output in your storybook. In other cases, you might find it difficult to extract the desired information in the information noise issued by the console or to determine which component in what state gives the message. With this addon, you can control **what** you see and **where** you see. 
 
 We assume the following possible applications:
 
-- Mobile devices. You might want to make console output reacheble for users when they need to work with your storybook from mobile browsers
+- Mobile devices. You might want to make console output reachable for users when they need to work with your storybook from mobile browsers
 
 - Small screens. You can save your screen space keeping browser console closed
 
 - To filter your console output. You can independently configure both action logger and real console output in a wide range.
 
-- To associate a console messages with a specific components/stories. You can see which story emits which message
+- To associate console messages with a specific components/stories. You can see which story emits which message
 
 - To output some data into Action Logger from your deep components without importing `addon-actions` for that. 
 
@@ -39,7 +39,7 @@ Just import it in your storybook config.js:
 import '@storybook/addon-console';
 ```
 
-That's all. You'll start to receive all console messages, warnings, errors in your action logger panel. Everything except HMR logs. If you want to enable HMR messages do the following:
+That's all. You'll start to receive all console messages, warnings, errors in your action logger panel. Everything except HMR logs. If you want to enable HMR messages, do the following:
 
 ```js
 // config.js
@@ -51,7 +51,7 @@ setConsoleOptions({
 });
 ```
 
-You'll receive console outputs as a `console`, `warn` and `error` actions in the panel. You might want to know from what stories they come. In this case add `withConsole` decorator:
+You'll receive console outputs as a `console`, `warn` and `error` actions in the panel. You might want to know from what stories they come. In this case, add `withConsole` decorator:
 
 ```js
 // config.js
@@ -69,7 +69,7 @@ After that your messages in Action Logger will be prefixed with the story path, 
 <a name="module_@storybook/addon-console"></a>
 
 ## @storybook/addon-console
-It handles `console.log`, `console.warn` and `console.error` methods and uncatched errors. By default it just reflects all console messages in the Action Logger Panel (should be installed as a peerDependency) except [HMR] logs.
+It handles `console.log`, `console.warn`, and `console.error` methods and not catched errors. By default, it just reflects all console messages in the Action Logger Panel (should be installed as a peerDependency) except [HMR] logs.
 
 
 * [@storybook/addon-console](#module_@storybook/addon-console)
@@ -109,7 +109,7 @@ setConsoleOptions({
 
 ### @storybook/addon-console.withConsole([optionsOrFn]) ⇒ <code>function</code>
 Wraps your stories with specified addon options.
-If you don't pass {`log`, `warn`, `error`} in options argument it'll create them from context for each story individually. Hence you'll see from what exact story you got an log or error. You can log from component's lifecycle methods or within your story.
+If you don't pass {`log`, `warn`, `error`} in options argument it'll create them from context for each story individually. Hence you'll see from what exact story you got a log or error. You can log from component's lifecycle methods or within your story.
 
 **Kind**: static method of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)  
 **Returns**: <code>function</code> - wrappedStoryFn  
@@ -191,7 +191,7 @@ Run `npm run test`. It starts jest test in `watch` mode.
 
 ### Test coverage
 
-After runnig tests you can explore coverage details in `.coverage/lcov-report/index.html`
+After running tests you can explore coverage details in `.coverage/lcov-report/index.html`
 
 ### Debugging
 

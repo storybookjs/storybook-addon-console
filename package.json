@@ -9,7 +9,7 @@
     "start": "start-storybook -p 9009",
     "prepublish": "node .scripts/prepublish.js",
     "build:tests": "rm -rdf .jest-dist && babel ./src -d ./.jest-dist -s",
-    "build:docs": "jsdoc2md -t docs/readme.hbs src/*.js  > README.md; echo",
+    "build:docs": "jsdoc2md -t docs/readme.hbs -c docs/jsdoc.config.json src/*.js  > README.md; echo",
     "build:storybook": "build-storybook",
     "deploy:storybook": "storybook-to-ghpages",
     "lint": "eslint ./src",

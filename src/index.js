@@ -1,5 +1,5 @@
 /** 
- * It handles `console.log`, `console.warn` and `console.error` methods and uncatched errors. By default it just reflects all console messages in the Action Logger Panel (should be installed as a peerDependency) except [HMR] logs.
+ * It handles `console.log`, `console.warn`, and `console.error` methods and not catched errors. By default, it just reflects all console messages in the Action Logger Panel (should be installed as a peerDependency) except [HMR] logs.
  * @module @storybook/addon-console 
  * 
  * 
@@ -188,7 +188,7 @@ function addConsole(storyFn, context, consoleOptions) {
 
 /**
  * Wraps your stories with specified addon options.
- * If you don't pass {`log`, `warn`, `error`} in options argument it'll create them from context for each story individually. Hence you'll see from what exact story you got an log or error. You can log from component's lifecycle methods or within your story.
+ * If you don't pass {`log`, `warn`, `error`} in options argument it'll create them from context for each story individually. Hence you'll see from what exact story you got a log or error. You can log from component's lifecycle methods or within your story.
  * @param {addonOptions|optionsCallback} [optionsOrFn]
  * @see [addonOptions]{@link #storybookaddon-consolesetconsoleoptionsoptionsorfn--addonoptions}
  * @see [optionsCallback]{@link #storybookaddon-consoleoptionscallback--addonoptions}
