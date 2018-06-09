@@ -1,9 +1,8 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.4",
   "name": "@storybook/addon-console",
   "author": "Oleg Proskurin (https://github.com/UsulPro)",
   "dependencies": {
-    "@storybook/addon-storysource": "^4.0.0-alpha.8",
     "global": "^4.3.2"
   },
   "scripts": {
@@ -33,6 +32,7 @@
     "@storybook/addon-actions": "^4.0.0-alpha.8",
     "@storybook/addon-links": "^4.0.0-alpha.8",
     "@storybook/react": "^4.0.0-alpha.8",
+    "@storybook/addon-storysource": "^4.0.0-alpha.8",
     "@storybook/storybook-deployer": "^2.0.0",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",

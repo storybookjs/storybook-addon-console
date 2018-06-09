@@ -21,7 +21,7 @@ We assume the following possible applications:
 
 - To output some data into Action Logger from your deep components without importing `addon-actions` for that.
 
-[![storybook-addon-console](docs/storybook-addon-console.png)](#)
+[![storybook-addon-console](https://raw.githubusercontent.com/storybooks/storybook-addon-console/master/docs/storybook-addon-console.png)](#)
 
 ### Install
 
