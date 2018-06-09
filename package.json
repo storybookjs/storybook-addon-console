@@ -29,8 +29,9 @@
     "url": "https://github.com/storybooks/storybook-addon-console.git"
   },
   "devDependencies": {
-    "@storybook/addon-links": "^3.0.0",
-    "@storybook/react": "^3.2.8",
+    "@storybook/addon-actions": "^4.0.0-alpha.8",
+    "@storybook/addon-links": "^4.0.0-alpha.8",
+    "@storybook/react": "^4.0.0-alpha.8",
     "@storybook/storybook-deployer": "^2.0.0",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
