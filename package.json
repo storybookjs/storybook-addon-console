@@ -3,6 +3,7 @@
   "name": "@storybook/addon-console",
   "author": "Oleg Proskurin (https://github.com/UsulPro)",
   "dependencies": {
+    "@storybook/addon-storysource": "^4.0.0-alpha.8",
     "global": "^4.3.2"
   },
   "scripts": {

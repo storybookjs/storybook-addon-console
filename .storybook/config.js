@@ -9,7 +9,7 @@ setConsoleOptions({
 
 
 function loadStories() {
-  require('../stories');
+  require('../stories/index.stories.js');
 }
 
 configure(loadStories, module);
