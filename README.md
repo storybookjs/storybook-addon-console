@@ -7,7 +7,7 @@ Redirects console output into Action Logger Panel
 
 ## Why
 
-There're some cases when you can't / don't want / forgot to keep browser console opened. This addon helps you to get all console output in your storybook. In other cases, you might find it difficult to extract the desired information in the information noise issued by the console or to determine which component in what state gives the message. With this addon, you can control **what** you see and **where** you see. 
+There're some cases when you can't / don't want / forgot to keep browser console opened. This addon helps you to get all console output in your storybook. In other cases, you might find it difficult to extract the desired information in the information noise issued by the console or to determine which component in what state gives the message. With this addon, you can control **what** you see and **where** you see.
 
 We assume the following possible applications:
 
@@ -19,7 +19,7 @@ We assume the following possible applications:
 
 - To associate console messages with a specific components/stories. You can see which story emits which message
 
-- To output some data into Action Logger from your deep components without importing `addon-actions` for that. 
+- To output some data into Action Logger from your deep components without importing `addon-actions` for that.
 
 [![storybook-addon-console](docs/storybook-addon-console.png)](#)
 
@@ -85,7 +85,7 @@ It handles `console.log`, `console.warn`, and `console.error` methods and not ca
 ### @storybook/addon-console.setConsoleOptions(optionsOrFn) ⇒ <code>addonOptions</code>
 Set addon options and returns a new one
 
-**Kind**: static method of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)  
+**Kind**: static method of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)
 **See**
 
 - addonOptions
@@ -94,9 +94,9 @@ Set addon options and returns a new one
 
 | Param | Type |
 | --- | --- |
-| optionsOrFn | <code>addonOptions</code> \| <code>optionsCallback</code> | 
+| optionsOrFn | <code>addonOptions</code> \| <code>optionsCallback</code> |
 
-**Example**  
+**Example**
 ```js
 import { setConsoleOptions } from '@storybook/addon-console';
 
@@ -111,8 +111,8 @@ setConsoleOptions({
 Wraps your stories with specified addon options.
 If you don't pass {`log`, `warn`, `error`} in options argument it'll create them from context for each story individually. Hence you'll see from what exact story you got a log or error. You can log from component's lifecycle methods or within your story.
 
-**Kind**: static method of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)  
-**Returns**: <code>function</code> - wrappedStoryFn  
+**Kind**: static method of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)
+**Returns**: <code>function</code> - wrappedStoryFn
 **See**
 
 - [addonOptions](#storybookaddon-consolesetconsoleoptionsoptionsorfn--addonoptions)
@@ -121,9 +121,9 @@ If you don't pass {`log`, `warn`, `error`} in options argument it'll create them
 
 | Param | Type |
 | --- | --- |
-| [optionsOrFn] | <code>addonOptions</code> \| <code>optionsCallback</code> | 
+| [optionsOrFn] | <code>addonOptions</code> \| <code>optionsCallback</code> |
 
-**Example**  
+**Example**
 ```js
 import { storiesOf } from '@storybook/react';
 import { withConsole } from '@storybook/addon-console';
@@ -147,7 +147,7 @@ storiesOf('withConsole', module)
 ### @storybook/addon-console~addonOptions : <code>Object</code>
 This options could be passed to [withConsole](#storybookaddon-consolewithconsoleoptionsorfn--function) or [setConsoleOptions](#module_@storybook/addon-console.setConsoleOptions)
 
-**Kind**: inner typedef of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)  
+**Kind**: inner typedef of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)
 **Properties**
 
 | Name | Type | Default | Description |
@@ -165,14 +165,14 @@ This options could be passed to [withConsole](#storybookaddon-consolewithconsole
 ### @storybook/addon-console~optionsCallback ⇒ <code>addonOptions</code>
 This callback could be passed to [setConsoleOptions](setConsoleOptions) or [withConsole](withConsole)
 
-**Kind**: inner typedef of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)  
-**Returns**: <code>addonOptions</code> - - new [addonOptions](addonOptions)  
+**Kind**: inner typedef of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)
+**Returns**: <code>addonOptions</code> - - new [addonOptions](addonOptions)
 
 | Param | Type | Description |
 | --- | --- | --- |
 | currentOptions | <code>addonOptions</code> | the current [addonOptions](addonOptions) |
 
-**Example**  
+**Example**
 ```js
 import { withConsole } from `@storybook/addon-console`;
 
@@ -203,5 +203,14 @@ Please, don't edit this `README.md` directly. Run `npm run dev:docs` and change 
 
 ## Credits
 
-<div align="left" style="height: 16px;"><sub>Created with ❤︎ to <b>React</b> and <b>React Storybook</b> by <a href="https://twitter.com/UsulPro">@UsulPro</a> and     <a href="https://github.com/react-theming">React Theming</a>.</sub></div>
+<div align="left" style="height: 16px;">Created with ❤︎ to <b>React</b> and <b>Storybook</b> by <a href="http://t.me/usulpro">@usulpro</a>  [<a href="https://github.com/react-theming">React Theming</a>]
+<sub>
+<p>
+https://twitter.com/UsulPro
+</p>
+<p>
+https://www.linkedin.com/in/oleg-proskurin-76784453/
+</p>
+</sub>
+</div>
 
