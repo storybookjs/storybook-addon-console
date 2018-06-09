@@ -85,7 +85,7 @@ It handles `console.log`, `console.warn`, and `console.error` methods and not ca
 ### @storybook/addon-console.setConsoleOptions(optionsOrFn) ⇒ <code>addonOptions</code>
 Set addon options and returns a new one
 
-**Kind**: static method of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)
+**Kind**: static method of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)  
 **See**
 
 - addonOptions
@@ -94,9 +94,9 @@ Set addon options and returns a new one
 
 | Param | Type |
 | --- | --- |
-| optionsOrFn | <code>addonOptions</code> \| <code>optionsCallback</code> |
+| optionsOrFn | <code>addonOptions</code> \| <code>optionsCallback</code> | 
 
-**Example**
+**Example**  
 ```js
 import { setConsoleOptions } from '@storybook/addon-console';
 
@@ -111,8 +111,8 @@ setConsoleOptions({
 Wraps your stories with specified addon options.
 If you don't pass {`log`, `warn`, `error`} in options argument it'll create them from context for each story individually. Hence you'll see from what exact story you got a log or error. You can log from component's lifecycle methods or within your story.
 
-**Kind**: static method of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)
-**Returns**: <code>function</code> - wrappedStoryFn
+**Kind**: static method of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)  
+**Returns**: <code>function</code> - wrappedStoryFn  
 **See**
 
 - [addonOptions](#storybookaddon-consolesetconsoleoptionsoptionsorfn--addonoptions)
@@ -121,9 +121,9 @@ If you don't pass {`log`, `warn`, `error`} in options argument it'll create them
 
 | Param | Type |
 | --- | --- |
-| [optionsOrFn] | <code>addonOptions</code> \| <code>optionsCallback</code> |
+| [optionsOrFn] | <code>addonOptions</code> \| <code>optionsCallback</code> | 
 
-**Example**
+**Example**  
 ```js
 import { storiesOf } from '@storybook/react';
 import { withConsole } from '@storybook/addon-console';
@@ -147,32 +147,32 @@ storiesOf('withConsole', module)
 ### @storybook/addon-console~addonOptions : <code>Object</code>
 This options could be passed to [withConsole](#storybookaddon-consolewithconsoleoptionsorfn--function) or [setConsoleOptions](#module_@storybook/addon-console.setConsoleOptions)
 
-**Kind**: inner typedef of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)
+**Kind**: inner typedef of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)  
 **Properties**
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| panelExclude | <code>Array.&lt;RegExp&gt;</code> | <code>[/[HMR]/]</code> | Optional. Anything matched to at least one of regular expressions will be excluded from output to Action Logger Panel |
-| panelInclude | <code>Array.&lt;RegExp&gt;</code> | <code>[]</code> | Optional. If set, only matched outputs will be shown in Action Logger. Higher priority than `panelExclude`. |
-| consoleExclude | <code>Array.&lt;RegExp&gt;</code> | <code>[]</code> | Optional. Anything matched to at least one of regular expressions will be excluded from DevTool console output |
-| consoleInclude | <code>Array.&lt;RegExp&gt;</code> | <code>[]</code> | Optional. If set, only matched outputs will be shown in console. Higher priority than `consoleExclude`. |
-| log | <code>string</code> | <code>&quot;console&quot;</code> | Optional. The marker to display `console.log` outputs in Action Logger |
-| warn | <code>string</code> | <code>&quot;warn&quot;</code> | Optional. The marker to display warnings in Action Logger |
-| error | <code>string</code> | <code>&quot;error&quot;</code> | Optional. The marker to display errors in Action Logger |
+| [panelExclude] | <code>Array.&lt;RegExp&gt;</code> | <code>[/[HMR]/]</code> | Optional. Anything matched to at least one of regular expressions will be excluded from output to Action Logger Panel |
+| [panelInclude] | <code>Array.&lt;RegExp&gt;</code> | <code>[]</code> | Optional. If set, only matched outputs will be shown in Action Logger. Higher priority than `panelExclude`. |
+| [consoleExclude] | <code>Array.&lt;RegExp&gt;</code> | <code>[]</code> | Optional. Anything matched to at least one of regular expressions will be excluded from DevTool console output |
+| [consoleInclude] | <code>Array.&lt;RegExp&gt;</code> | <code>[]</code> | Optional. If set, only matched outputs will be shown in console. Higher priority than `consoleExclude`. |
+| [log] | <code>string</code> | <code>&quot;console&quot;</code> | Optional. The marker to display `console.log` outputs in Action Logger |
+| [warn] | <code>string</code> | <code>&quot;warn&quot;</code> | Optional. The marker to display warnings in Action Logger |
+| [error] | <code>string</code> | <code>&quot;error&quot;</code> | Optional. The marker to display errors in Action Logger |
 
 <a name="module_@storybook/addon-console..optionsCallback"></a>
 
 ### @storybook/addon-console~optionsCallback ⇒ <code>addonOptions</code>
 This callback could be passed to [setConsoleOptions](setConsoleOptions) or [withConsole](withConsole)
 
-**Kind**: inner typedef of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)
-**Returns**: <code>addonOptions</code> - - new [addonOptions](addonOptions)
+**Kind**: inner typedef of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)  
+**Returns**: <code>addonOptions</code> - - new [addonOptions](addonOptions)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | currentOptions | <code>addonOptions</code> | the current [addonOptions](addonOptions) |
 
-**Example**
+**Example**  
 ```js
 import { withConsole } from `@storybook/addon-console`;
 
@@ -213,4 +213,3 @@ https://www.linkedin.com/in/oleg-proskurin-76784453/
 </p>
 </sub>
 </div>
-
