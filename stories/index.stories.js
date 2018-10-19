@@ -60,5 +60,5 @@ storiesOf('withConsole', module)
   .add('with Uncatched Error', () =>
     <Button onClick={() => console.log('Data:', T.buu.foo)}>Throw Button</Button>
   )
-  .add('with log in costructor', () => <Badge info={42} />)
+  .add('with log in constructor', () => <Badge info={42} />)
   .add('with wrong PropType', () => <Badge info="Component with React Warning" />);
