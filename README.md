@@ -2,7 +2,6 @@
 [![addon-console](https://img.shields.io/npm/dt/@storybook/addon-console.svg)](https://github.com/storybooks/storybook-addon-console)
 [![Storybook](https://github.com/storybooks/press/blob/master/badges/storybook.svg)](https://storybooks.github.io/storybook-addon-console)
 
-
 # Storybook Addon Console
 
 Redirects console output into Action Logger Panel
