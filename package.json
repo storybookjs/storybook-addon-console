@@ -1,5 +1,5 @@
 {
-  "version": "1.0.5",
+  "version": "1.0.8",
   "name": "@storybook/addon-console",
   "author": "Oleg Proskurin (https://github.com/UsulPro)",
   "dependencies": {

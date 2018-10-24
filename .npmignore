@@ -13,3 +13,6 @@ jest.config.js
 .scripts
 docs
 storybook-addon-console*.tgz
+dist/index.test.js
+yarn-error.log
+yarn.lock
