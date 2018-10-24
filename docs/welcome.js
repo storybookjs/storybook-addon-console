@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default (
-  <div style={{fontFamily: '-apple-system, ".SFNSText-Regular", "San Francisco", BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Lucida Grande", "Arial", sans-serif', color: '404040'}}>
+  <div style={{fontFamily: '-apple-system, ".SFNSText-Regular", "San Francisco", BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Lucida Grande", "Arial", sans-serif', color: '#585858'}}>
 
     <a href="https://badge.fury.io/js/%40storybook%2Faddon-console">
       <img src="https://badge.fury.io/js/%40storybook%2Faddon-console.svg" alt="npm version" />
