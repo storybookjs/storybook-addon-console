@@ -1,7 +1,8 @@
 import React from 'react';
 
 export default (
-  <div>
+  <div style={{fontFamily: '-apple-system, ".SFNSText-Regular", "San Francisco", BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Lucida Grande", "Arial", sans-serif', color: '404040'}}>
+
     <a href="https://badge.fury.io/js/%40storybook%2Faddon-console">
       <img src="https://badge.fury.io/js/%40storybook%2Faddon-console.svg" alt="npm version" />
     </a>
@@ -35,14 +36,14 @@ export default (
       <a href="https://storybooks.github.io/storybook-addon-console">
         <svg width="90" height="20" xmlns="http://www.w3.org/2000/svg">
           <g fill="none" fillRule="evenodd">
-            <rect fill="#2A0481" width="90" height="20" rx="3" />
+            <rect fill="#F1618C" width="90" height="20" rx="3" />
             <g fillRule="nonzero">
               <path
                 d="M7.725 3.728L18 3v14l-9.704-.484v.016l-.843.093-.5-12.984.772.087z"
-                fill="#F1618C"
+                fill="white"
               />
               <path
-                fill="#FFF"
+                fill="#F1618C"
                 d="M15.462 4.905l.135-1.73 1.275-.09v1.82l-.641-.552zM13.292 8.468l2.055-.05c.05-1.94-.983-2.898-2.783-2.898-1.8 0-2.808.995-2.808 2.488 0 2.6 3.446 2.65 3.446 4.068 0 .398-.191.634-.612.634-.549 0-.766-.348-.74-1.318H9.693c-.166 2.4 1.276 2.948 2.922 2.948 1.596 0 2.847-.722 2.847-2.289 0-2.787-3.498-2.712-3.498-4.093 0-.56.409-.634.651-.634.256 0 .715.1.677 1.144z"
               />
             </g>
