@@ -3,7 +3,8 @@
   "name": "@storybook/addon-console",
   "author": "Oleg Proskurin (https://github.com/UsulPro)",
   "dependencies": {
-    "global": "^4.3.2"
+    "global": "^4.3.2",
+    "@babel/runtime": "^7.1.2"
   },
   "scripts": {
     "start": "start-storybook -p 9009",
@@ -31,7 +32,6 @@
   "devDependencies": {
     "@babel/cli": "^7.1.2",
     "@babel/plugin-transform-runtime": "^7.1.0",
-    "@babel/runtime": "^7.1.2",
     "@emotion/core": "^0.13.1",
     "@emotion/provider": "^0.11.2",
     "@emotion/styled": "^0.10.6",
