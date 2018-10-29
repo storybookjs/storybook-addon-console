@@ -1,8 +1,8 @@
-/** 
+/**
  * It handles `console.log`, `console.warn`, and `console.error` methods and not catched errors. By default, it just reflects all console messages in the Action Logger Panel (should be installed as a peerDependency) except [HMR] logs.
- * @module @storybook/addon-console 
- * 
- * 
+ * @module @storybook/addon-console
+ *
+ *
  */
 
 import window from 'global/window';
@@ -111,10 +111,10 @@ const detectOptions = prop => {
 
 /**
  * This callback could be passed to {@link setConsoleOptions} or {@link withConsole}
- * 
- * @example 
+ *
+ * @example
  * import { withConsole } from `@storybook/addon-console`;
- * 
+ *
  * const optionsCallback = (options) => ({panelExclude: [...options.panelExclude, /Warning/]});
  * addDecorator((storyFn, context) => withConsole(optionsCallback)(storyFn)(context));
  *
@@ -125,11 +125,11 @@ const detectOptions = prop => {
 
 /**
  * Set addon options and returns a new one
- * @param {addonOptions|optionsCallback} optionsOrFn 
+ * @param {addonOptions|optionsCallback} optionsOrFn
  * @return {addonOptions}
  * @see addonOptions
  * @see optionsCallback
- * 
+ *
  * @example
 import { setConsoleOptions } from '@storybook/addon-console';
 
@@ -165,8 +165,8 @@ function addConsole(storyFn, context, consoleOptions) {
   const logNames = context
     ? {
         log: `${context.kind}/${context.story}`,
-        warn: `${context.kind}/${context.story} warn`,
-        error: `${context.kind}/${context.story} error`,
+        warn: `${context.kind}/${context.story}/warn`,
+        error: `${context.kind}/${context.story}/error`,
       }
     : {};
 
@@ -193,11 +193,11 @@ function addConsole(storyFn, context, consoleOptions) {
  * @see [addonOptions]{@link #storybookaddon-consolesetconsoleoptionsoptionsorfn--addonoptions}
  * @see [optionsCallback]{@link #storybookaddon-consoleoptionscallback--addonoptions}
  * @return {function} wrappedStoryFn
- * 
+ *
  * @example
  * import { storiesOf } from '@storybook/react';
  * import { withConsole } from '@storybook/addon-console';
- * 
+ *
  * storiesOf('withConsole', module)
  *  .addDecorator((storyFn, context) => withConsole()(storyFn)(context))
  *  .add('with Log', () => <Button onClick={() => console.log('Data:', 1, 3, 4)}>Log Button</Button>)
