@@ -154,7 +154,9 @@ function handleStoryLogs() {
       return reactStory;
     default:
       logger.warn(
-        `Warning! withConsole doesn't support @storybook/${window.STORYBOOK_ENV}. Use setConsoleOptions instead`
+        `Warning! withConsole doesn't support @storybook/${
+          window.STORYBOOK_ENV
+        }. Use setConsoleOptions instead`
       );
       return story => story;
   }

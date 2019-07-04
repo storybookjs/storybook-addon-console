@@ -1,6 +1,6 @@
 [![npm version](https://badge.fury.io/js/%40storybook%2Faddon-console.svg)](https://badge.fury.io/js/%40storybook%2Faddon-console)
 [![addon-console](https://img.shields.io/npm/dt/@storybook/addon-console.svg)](https://github.com/storybooks/storybook-addon-console)
-[![Storybook](https://github.com/storybooks/storybook-addon-console/blob/master/docs/storybook.svg)](https://storybooks.github.io/storybook-addon-console)
+[![Storybook](https://github.com/storybookjs/storybook-addon-console/blob/master/docs/storybook.svg)](https://storybookjs.github.io/storybook-addon-console)
 
 # Storybook Addon Console
 

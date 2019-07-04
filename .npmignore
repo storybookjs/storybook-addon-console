@@ -16,3 +16,5 @@ storybook-addon-console*.tgz
 dist/index.test.js
 yarn-error.log
 yarn.lock
+.env
+README.md

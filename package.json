@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.1.1",
   "name": "@storybook/addon-console",
   "author": "Oleg Proskurin (https://github.com/UsulPro)",
   "dependencies": {
@@ -13,7 +13,8 @@
     "build:storybook": "build-storybook",
     "deploy:storybook": "storybook-to-ghpages",
     "lint": "eslint ./src",
-    "test": "jest --watch",
+    "test": "jest",
+    "tdd": "jest --watch",
     "test:publish": "npm pack",
     "dev:docs": "nodemon --config docs/nodemon.json -x 'npm run build:docs'",
     "debug": "node --debug-brk --inspect npm test"

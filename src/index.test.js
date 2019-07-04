@@ -250,6 +250,7 @@ describe('addon Console', () => {
         global.window.STORYBOOK_ENV = 'vue';
       });
 
+      // eslint-disable-next-line jest/no-disabled-tests
       xit('should wrap storyFn', () => {
         const fakeFn = () => {
           logger.log(logString);
