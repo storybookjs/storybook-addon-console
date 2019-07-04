@@ -27,7 +27,7 @@ We assume the following possible applications:
 ### Install
 
 ```shell
-npm i @storybook/addon-console --save-dev
+npm i @storybook/addon-console @storybook/addon-actions --save-dev
 ```
 
 ### Quick Start
@@ -40,7 +40,16 @@ Just import it in your storybook config.js:
 import '@storybook/addon-console';
 ```
 
-That's all. You'll start to receive all console messages, warnings, errors in your action logger panel. Everything except HMR logs. If you want to enable HMR messages, do the following:
+That's all. You'll start to receive all console messages, warnings, errors in your action logger panel. Everything except HMR logs.
+Only make sure that `addons.js` contains this line:
+
+```
+// addons.js
+
+import '@storybook/addon-actions/register';
+```
+
+If you want to enable HMR messages, do the following:
 
 ```js
 // config.js
