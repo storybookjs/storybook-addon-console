@@ -12,9 +12,9 @@ import { reactStory } from './react-decorator';
 
 const logger = console;
 const cLogger = {
-  log: logger.log,
-  warn: logger.warn,
-  error: logger.error,
+  log: logger.log.bind(logger),
+  warn: logger.warn.bind(logger),
+  error: logger.error.bind(logger),
 };
 
 /**
