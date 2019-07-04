@@ -276,7 +276,7 @@ describe('addon Console', () => {
         expect(aLogResults.data[0]).toEqual(
           expect.stringContaining("withConsole doesn't support @storybook/covfefe")
         );
-        expect(aLogResults.msg).toBe('StoryKind/JestStory warn');
+        expect(aLogResults.msg).toBe('StoryKind/JestStory/warn');
         expect(consoleLog.mock.calls[0][0]).toBe(logString);
       });
     });
