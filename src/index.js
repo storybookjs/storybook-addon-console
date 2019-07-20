@@ -6,9 +6,15 @@
  */
 
 import window from 'global/window';
-import { action } from '@storybook/addon-actions';
+import { action, configureActions } from '@storybook/addon-actions';
 
 import { reactStory } from './react-decorator';
+
+if (configureActions) {
+  configureActions({
+    clearOnStoryChange: false,
+  });
+}
 
 const logger = console;
 const cLogger = {
@@ -47,13 +53,13 @@ const createLogger = options => ({
 
 const shouldDisplay = (messages, exclude, include) => {
   if (include.length) {
-    return messages.filter(
-      mess => (typeof mess === 'string' ? include.find(regExp => mess.match(regExp)) : false)
+    return messages.filter(mess =>
+      typeof mess === 'string' ? include.find(regExp => mess.match(regExp)) : false
     );
   }
   if (exclude.length) {
-    return messages.filter(
-      mess => (typeof mess === 'string' ? !exclude.find(regExp => mess.match(regExp)) : true)
+    return messages.filter(mess =>
+      typeof mess === 'string' ? !exclude.find(regExp => mess.match(regExp)) : true
     );
   }
   return messages;
@@ -154,9 +160,7 @@ function handleStoryLogs() {
       return reactStory;
     default:
       logger.warn(
-        `Warning! withConsole doesn't support @storybook/${
-          window.STORYBOOK_ENV
-        }. Use setConsoleOptions instead`
+        `Warning! withConsole doesn't support @storybook/${window.STORYBOOK_ENV}. Use setConsoleOptions instead`
       );
       return story => story;
   }
