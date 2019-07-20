@@ -1,42 +1,27 @@
 import React from 'react';
-import ThemeProvider from '@emotion/provider';
 import { configure, addDecorator } from '@storybook/react';
-import { themes } from '@storybook/components';
 import { withOptions } from '@storybook/addon-options';
+import { create } from '@storybook/theming';
+
+import brandImage from '../docs/logo.svg';
 import { setConsoleOptions } from '../src';
 
-import 'react-chromatic/storybook-addon';
+const theme = create({
+  base: 'light',
 
-const theme = {...themes.normal,
-  // mainBackground: '#4c4c4c',
-  // mainFill: '#ababab',
-  // barFill: '#4c4c4c',
-  // barSelectedColor: 'white',
-  // highlightColor: 'red'
-  // mainTextColor: 'white'
-  brand: {
-    background: '#F1618C',
-    color: 'white'
-  }
-}
+  colorPrimary: 'red',
+  colorSecondary: '#58487b',
+  brandTitle: 'Addon Console',
+  brandUrl: 'https://github.com/storybookjs/storybook-addon-console',
+  brandImage,
+});
 
 addDecorator(
   withOptions({
-    name: 'Addon Console',
-    url: 'https://github.com/storybooks/storybook-addon-console',
     theme,
   })
-  );
-  console.log('TCL: themes.dark', theme);
-
-addDecorator(
-  (story, { kind }) =>
-    kind === 'Core|Errors' ? (
-      story()
-    ) : (
-      <ThemeProvider theme={themes.normal}>{story()}</ThemeProvider>
-    )
 );
+
 
 const panelExclude = setConsoleOptions({}).panelExclude;
 setConsoleOptions({
