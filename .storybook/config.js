@@ -32,7 +32,7 @@ setConsoleOptions({
 });
 
 function loadStories() {
-  require('../stories/index.stories.js');
+  require('./index.stories.js');
 }
 
 addParameters({

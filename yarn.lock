@@ -1782,6 +1782,14 @@
   resolved "https://registry.yarnpkg.com/@types/tapable/-/tapable-1.0.2.tgz#e13182e1b69871a422d7863e11a4a6f5b814a4bd"
   integrity sha512-42zEJkBpNfMEAvWR5WlwtTH22oDzcMjFsL9gDGExwF8X8WvAiw7Vwop7hPw03QT8TKfec83LwbHj6SvpqM4ELQ==
 
+"@usulpro/package-prepare@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@usulpro/package-prepare/-/package-prepare-1.0.5.tgz#283cd63a991cf4de6634b5ebb0b21b078be02971"
+  integrity sha512-ZgbNHL2R4PkvlI4TIsjmDFLhyYI/CCpEal0eEy/14wlGHYmoCIIeSUwVslzIpwqjYqMx8RJmtpJOPLsfgJuSxA==
+  dependencies:
+    chalk "^2.4.2"
+    shelljs "^0.8.3"
+
 "@webassemblyjs/ast@1.7.6":
   version "1.7.6"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.7.6.tgz#3ef8c45b3e5e943a153a05281317474fef63e21e"
