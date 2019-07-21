@@ -1,23 +1,23 @@
-[![npm
-version](https://badge.fury.io/js/%40storybook%2Faddon-console.svg)](https://badge.fury.io/js/%40storybook%2Faddon-console)
-[![addon-console](https://img.shields.io/npm/dt/@storybook/addon-console.svg)](https://github.com/storybooks/storybook-addon-console)
-[![Storybook](https://github.com/storybookjs/storybook-addon-console/blob/master/docs/storybook.svg)](https://storybookjs.github.io/storybook-addon-console)
 
 <div align="center">
   <h1>
+  <nobr>
     <a href="https://storybookjs.github.io/storybook-addon-console">
-      <img alt="Addon Console Logo"
-        src="https://raw.githubusercontent.com/storybookjs/storybook-addon-console/master/docs/logo.svg"
-        height="150px" />
+      <img src="docs/logo.png" alt="logo" height="140">
     </a>
-    Storybook Addon Console</h1>
+    <img src="docs/title.png" alt="Storybook Addon Console">
+    </nobr>
+  </h1>
 
 </div>
 
 <br />
 
+[![npm
+version](https://badge.fury.io/js/%40storybook%2Faddon-console.svg)](https://badge.fury.io/js/%40storybook%2Faddon-console)
+[![addon-console](https://img.shields.io/npm/dt/@storybook/addon-console.svg)](https://github.com/storybooks/storybook-addon-console)
+[![Storybook](https://raw.githubusercontent.com/storybookjs/storybook-addon-console/master/docs/storybook.svg?sanitize=true)](https://storybookjs.github.io/storybook-addon-console)
 
-Redirects console output into Action Logger Panel
 
 ## Why
 
@@ -40,7 +40,9 @@ range.
 
 - To output some data into Action Logger from your deep components without importing `addon-actions` for that.
 
-[![storybook-addon-console](https://raw.githubusercontent.com/storybooks/storybook-addon-console/master/docs/storybook-addon-console.png)](#)
+[![storybook-addon-console](https://raw.githubusercontent.com/storybooks/storybook-addon-console/master/docs/storybook-addon-console.png)](https://raw.githubusercontent.com/storybooks/storybook-addon-console/master/docs/storybook-addon-console.png)
+
+try [live demo](https://storybookjs.github.io/storybook-addon-console)
 
 ### Install
 
@@ -60,13 +62,6 @@ import '@storybook/addon-console';
 
 That's all. You'll start to receive all console messages, warnings, errors in your action logger panel. Everything
 except HMR logs.
-Only make sure that `addons.js` contains this line:
-
-```js
-// addons.js
-
-import '@storybook/addon-actions/register';
-```
 
 If you want to enable HMR messages, do the following:
 
@@ -95,6 +90,16 @@ addDecorator((storyFn, context) => withConsole()(storyFn)(context));
 After that your messages in Action Logger will be prefixed with the story path, like `molecules/atoms/electron:
 ["ComponentDidMount"]` or `molecules/atoms/electron error: ["Warning: Failed prop type..."]`. You can setup addon
 behavior by passing options to `withConsole` or `setConsoleOptions` methods, both have the same API.
+
+### Panel
+
+Addon console don't have own UI panel to output logs, it use `addon-console` instead. Make sure that `addons.js` contains this line:
+
+```js
+// addons.js
+
+import '@storybook/addon-actions/register';
+```
 
 
 ## API

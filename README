@@ -1,23 +1,23 @@
-[![npm
-version](https://badge.fury.io/js/%40storybook%2Faddon-console.svg)](https://badge.fury.io/js/%40storybook%2Faddon-console)
-[![addon-console](https://img.shields.io/npm/dt/@storybook/addon-console.svg)](https://github.com/storybooks/storybook-addon-console)
-[![Storybook](https://github.com/storybookjs/storybook-addon-console/blob/master/docs/storybook.svg)](https://storybookjs.github.io/storybook-addon-console)
 
 <div align="center">
   <h1>
+  <nobr>
     <a href="https://storybookjs.github.io/storybook-addon-console">
-      <img alt="Addon Console Logo"
-        src="https://raw.githubusercontent.com/storybookjs/storybook-addon-console/master/docs/logo.svg"
-        height="150px" />
+      <img src="docs/logo.png" alt="logo" height="140">
     </a>
-    Storybook Addon Console</h1>
+    <img src="docs/title.png" alt="Storybook Addon Console">
+    </nobr>
+  </h1>
 
 </div>
 
 <br />
 
+[![npm
+version](https://badge.fury.io/js/%40storybook%2Faddon-console.svg)](https://badge.fury.io/js/%40storybook%2Faddon-console)
+[![addon-console](https://img.shields.io/npm/dt/@storybook/addon-console.svg)](https://github.com/storybooks/storybook-addon-console)
+[![Storybook](https://raw.githubusercontent.com/storybookjs/storybook-addon-console/master/docs/storybook.svg?sanitize=true)](https://storybookjs.github.io/storybook-addon-console)
 
-Redirects console output into Action Logger Panel
 
 ## Why
 
@@ -40,7 +40,9 @@ range.
 
 - To output some data into Action Logger from your deep components without importing `addon-actions` for that.
 
-[![storybook-addon-console](https://raw.githubusercontent.com/storybooks/storybook-addon-console/master/docs/storybook-addon-console.png)](#)
+[![storybook-addon-console](https://raw.githubusercontent.com/storybooks/storybook-addon-console/master/docs/storybook-addon-console.png)](https://raw.githubusercontent.com/storybooks/storybook-addon-console/master/docs/storybook-addon-console.png)
+
+try [live demo](https://storybookjs.github.io/storybook-addon-console)
 
 ### Install
 
@@ -60,13 +62,6 @@ import '@storybook/addon-console';
 
 That's all. You'll start to receive all console messages, warnings, errors in your action logger panel. Everything
 except HMR logs.
-Only make sure that `addons.js` contains this line:
-
-```js
-// addons.js
-
-import '@storybook/addon-actions/register';
-```
 
 If you want to enable HMR messages, do the following:
 
@@ -96,6 +91,16 @@ After that your messages in Action Logger will be prefixed with the story path, 
 ["ComponentDidMount"]` or `molecules/atoms/electron error: ["Warning: Failed prop type..."]`. You can setup addon
 behavior by passing options to `withConsole` or `setConsoleOptions` methods, both have the same API.
 
+### Panel
+
+Addon console don't have own UI panel to output logs, it use `addon-console` instead. Make sure that `addons.js` contains this line:
+
+```js
+// addons.js
+
+import '@storybook/addon-actions/register';
+```
+
 
 ## API
 <a name="module_@storybook/addon-console"></a>
@@ -117,7 +122,7 @@ It handles `console.log`, `console.warn`, and `console.error` methods and not ca
 ### @storybook/addon-console.setConsoleOptions(optionsOrFn) ⇒ <code>addonOptions</code>
 Set addon options and returns a new one
 
-**Kind**: static method of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)
+**Kind**: static method of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)  
 **See**
 
 - addonOptions
@@ -126,9 +131,9 @@ Set addon options and returns a new one
 
 | Param | Type |
 | --- | --- |
-| optionsOrFn | <code>addonOptions</code> \| <code>optionsCallback</code> |
+| optionsOrFn | <code>addonOptions</code> \| <code>optionsCallback</code> | 
 
-**Example**
+**Example**  
 ```js
 import { setConsoleOptions } from '@storybook/addon-console';
 
@@ -143,8 +148,8 @@ setConsoleOptions({
 Wraps your stories with specified addon options.
 If you don't pass {`log`, `warn`, `error`} in options argument it'll create them from context for each story individually. Hence you'll see from what exact story you got a log or error. You can log from component's lifecycle methods or within your story.
 
-**Kind**: static method of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)
-**Returns**: <code>function</code> - wrappedStoryFn
+**Kind**: static method of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)  
+**Returns**: <code>function</code> - wrappedStoryFn  
 **See**
 
 - [addonOptions](#storybookaddon-consolesetconsoleoptionsoptionsorfn--addonoptions)
@@ -153,9 +158,9 @@ If you don't pass {`log`, `warn`, `error`} in options argument it'll create them
 
 | Param | Type |
 | --- | --- |
-| [optionsOrFn] | <code>addonOptions</code> \| <code>optionsCallback</code> |
+| [optionsOrFn] | <code>addonOptions</code> \| <code>optionsCallback</code> | 
 
-**Example**
+**Example**  
 ```js
 import { storiesOf } from '@storybook/react';
 import { withConsole } from '@storybook/addon-console';
@@ -179,7 +184,7 @@ storiesOf('withConsole', module)
 ### @storybook/addon-console~addonOptions : <code>Object</code>
 This options could be passed to [withConsole](#storybookaddon-consolewithconsoleoptionsorfn--function) or [setConsoleOptions](#module_@storybook/addon-console.setConsoleOptions)
 
-**Kind**: inner typedef of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)
+**Kind**: inner typedef of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)  
 **Properties**
 
 | Name | Type | Default | Description |
@@ -197,14 +202,14 @@ This options could be passed to [withConsole](#storybookaddon-consolewithconsole
 ### @storybook/addon-console~optionsCallback ⇒ <code>addonOptions</code>
 This callback could be passed to [setConsoleOptions](setConsoleOptions) or [withConsole](withConsole)
 
-**Kind**: inner typedef of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)
-**Returns**: <code>addonOptions</code> - - new [addonOptions](addonOptions)
+**Kind**: inner typedef of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)  
+**Returns**: <code>addonOptions</code> - - new [addonOptions](addonOptions)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | currentOptions | <code>addonOptions</code> | the current [addonOptions](addonOptions) |
 
-**Example**
+**Example**  
 ```js
 import { withConsole } from `@storybook/addon-console`;
 
