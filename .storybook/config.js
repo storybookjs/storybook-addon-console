@@ -1,42 +1,30 @@
 import React from 'react';
-import ThemeProvider from '@emotion/provider';
-import { configure, addDecorator } from '@storybook/react';
-import { themes } from '@storybook/components';
-import { withOptions } from '@storybook/addon-options';
+import { configure, addDecorator, addParameters } from '@storybook/react';
+import { create } from '@storybook/theming';
+
+import brandImage from '../docs/logo.svg';
 import { setConsoleOptions } from '../src';
 
-import 'react-chromatic/storybook-addon';
+const theme = create({
+  base: 'dark',
 
-const theme = {...themes.normal,
-  // mainBackground: '#4c4c4c',
-  // mainFill: '#ababab',
-  // barFill: '#4c4c4c',
-  // barSelectedColor: 'white',
-  // highlightColor: 'red'
-  // mainTextColor: 'white'
-  brand: {
-    background: '#F1618C',
-    color: 'white'
-  }
-}
+  colorPrimary: 'red',
+  colorSecondary: '#58487b',
+  brandTitle: 'Addon Console',
+  brandUrl: 'https://github.com/storybookjs/storybook-addon-console',
+  brandImage,
+  appContentBg: '#251f33',
+  appBg: '#6d608a',
+  barBg: '#3b3152',
+  barSelectedColor: 'white',
+  background: { content: 'red' },
 
-addDecorator(
-  withOptions({
-    name: 'Addon Console',
-    url: 'https://github.com/storybooks/storybook-addon-console',
-    theme,
-  })
-  );
-  console.log('TCL: themes.dark', theme);
-
-addDecorator(
-  (story, { kind }) =>
-    kind === 'Core|Errors' ? (
-      story()
-    ) : (
-      <ThemeProvider theme={themes.normal}>{story()}</ThemeProvider>
-    )
-);
+  addonActionsTheme: {
+    // ...chromeLight,
+    // BASE_FONT_FAMILY: typography.fonts.mono,
+    BASE_BACKGROUND_COLOR: 'black',
+  },
+});
 
 const panelExclude = setConsoleOptions({}).panelExclude;
 setConsoleOptions({
@@ -44,7 +32,14 @@ setConsoleOptions({
 });
 
 function loadStories() {
-  require('../stories/index.stories.js');
+  require('./index.stories.js');
 }
+
+addParameters({
+  options: {
+    theme,
+  },
+  backgrounds: [{ name: 'default', value: '#e7e2f3', default: true }],
+});
 
 configure(loadStories, module);

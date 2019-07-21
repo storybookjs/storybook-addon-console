@@ -4,14 +4,37 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { storiesOf } from '@storybook/react';
+import { styled } from '@storybook/theming';
 
-import { Button } from '@storybook/react/demo';
 import welcome from '../docs/welcome';
 import { withConsole } from '../src';
 
 const T = {
   foo: 11,
 };
+
+const Button = styled.button`
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 3px;
+  background: linear-gradient(0deg, rgba(48, 47, 91, 1) 0%, rgba(90, 90, 157, 1) 100%);
+  color: #d7ccf1;
+  cursor: pointer;
+  font-size: 16px;
+  height: 50px;
+  width: 200px;
+  margin: 30px;
+
+  :hover {
+    background: linear-gradient(0deg, rgba(90, 90, 157, 1) 0%, rgba(61, 61, 117, 1) 100%);
+  }
+
+  :focus {
+    outline-color: rgba(48, 47, 91, 0.37);
+    outline-offset: 1px;
+    outline-width: 3px;
+    outline-style: double;
+  }
+`;
 
 class Badge extends React.Component {
   constructor(props) {
@@ -20,7 +43,7 @@ class Badge extends React.Component {
   }
   render() {
     console.log('Badge render');
-    return <div>{this.props.info}</div>;
+    return <Button>{this.props.info}</Button>;
   }
 }
 Badge.propTypes = {
