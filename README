@@ -3,9 +3,9 @@
   <h1>
   <nobr>
     <a href="https://storybookjs.github.io/storybook-addon-console">
-      <img src="docs/logo.png" alt="logo" height="140">
+      <img src="https://raw.githubusercontent.com/storybooks/storybook-addon-console/HEAD/docs/logo.png" alt="logo" height="140">
     </a>
-    <img src="docs/title.png" alt="Storybook Addon Console">
+    <img src="https://raw.githubusercontent.com/storybooks/storybook-addon-console/HEAD/docs/title.png" alt="Storybook Addon Console">
     </nobr>
   </h1>
 
@@ -122,7 +122,7 @@ It handles `console.log`, `console.warn`, and `console.error` methods and not ca
 ### @storybook/addon-console.setConsoleOptions(optionsOrFn) ⇒ <code>addonOptions</code>
 Set addon options and returns a new one
 
-**Kind**: static method of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)  
+**Kind**: static method of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)
 **See**
 
 - addonOptions
@@ -131,9 +131,9 @@ Set addon options and returns a new one
 
 | Param | Type |
 | --- | --- |
-| optionsOrFn | <code>addonOptions</code> \| <code>optionsCallback</code> | 
+| optionsOrFn | <code>addonOptions</code> \| <code>optionsCallback</code> |
 
-**Example**  
+**Example**
 ```js
 import { setConsoleOptions } from '@storybook/addon-console';
 
@@ -148,8 +148,8 @@ setConsoleOptions({
 Wraps your stories with specified addon options.
 If you don't pass {`log`, `warn`, `error`} in options argument it'll create them from context for each story individually. Hence you'll see from what exact story you got a log or error. You can log from component's lifecycle methods or within your story.
 
-**Kind**: static method of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)  
-**Returns**: <code>function</code> - wrappedStoryFn  
+**Kind**: static method of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)
+**Returns**: <code>function</code> - wrappedStoryFn
 **See**
 
 - [addonOptions](#storybookaddon-consolesetconsoleoptionsoptionsorfn--addonoptions)
@@ -158,9 +158,9 @@ If you don't pass {`log`, `warn`, `error`} in options argument it'll create them
 
 | Param | Type |
 | --- | --- |
-| [optionsOrFn] | <code>addonOptions</code> \| <code>optionsCallback</code> | 
+| [optionsOrFn] | <code>addonOptions</code> \| <code>optionsCallback</code> |
 
-**Example**  
+**Example**
 ```js
 import { storiesOf } from '@storybook/react';
 import { withConsole } from '@storybook/addon-console';
@@ -184,7 +184,7 @@ storiesOf('withConsole', module)
 ### @storybook/addon-console~addonOptions : <code>Object</code>
 This options could be passed to [withConsole](#storybookaddon-consolewithconsoleoptionsorfn--function) or [setConsoleOptions](#module_@storybook/addon-console.setConsoleOptions)
 
-**Kind**: inner typedef of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)  
+**Kind**: inner typedef of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)
 **Properties**
 
 | Name | Type | Default | Description |
@@ -202,14 +202,14 @@ This options could be passed to [withConsole](#storybookaddon-consolewithconsole
 ### @storybook/addon-console~optionsCallback ⇒ <code>addonOptions</code>
 This callback could be passed to [setConsoleOptions](setConsoleOptions) or [withConsole](withConsole)
 
-**Kind**: inner typedef of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)  
-**Returns**: <code>addonOptions</code> - - new [addonOptions](addonOptions)  
+**Kind**: inner typedef of [<code>@storybook/addon-console</code>](#module_@storybook/addon-console)
+**Returns**: <code>addonOptions</code> - - new [addonOptions](addonOptions)
 
 | Param | Type | Description |
 | --- | --- | --- |
 | currentOptions | <code>addonOptions</code> | the current [addonOptions](addonOptions) |
 
-**Example**  
+**Example**
 ```js
 import { withConsole } from `@storybook/addon-console`;
 

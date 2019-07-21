@@ -1,5 +1,5 @@
 {
-  "version": "1.1.1",
+  "version": "1.2.1",
   "name": "@storybook/addon-console",
   "author": "Oleg Proskurin (https://github.com/UsulPro)",
   "dependencies": {
@@ -31,6 +31,23 @@
     "type": "git",
     "url": "https://github.com/storybooks/storybook-addon-console.git"
   },
+  "keywords": [
+    "storybook",
+    "storybookjs",
+    "storybook-addon",
+    "addon",
+    "console",
+    "action",
+    "logs",
+    "output",
+    "decorator",
+    "warning",
+    "warnings",
+    "error",
+    "errors",
+    "redirect",
+    "devtools"
+  ],
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
