@@ -52,10 +52,10 @@ npm i @storybook/addon-console @storybook/addon-actions --save-dev
 
 ### Quick Start
 
-Just import it in your storybook config.js:
+Just import it in your storybook `preview.js` or `config.js`:
 
 ```js
-// config.js
+// preview.js
 
 import '@storybook/addon-console';
 ```
@@ -63,10 +63,12 @@ import '@storybook/addon-console';
 That's all. You'll start to receive all console messages, warnings, errors in your action logger panel. Everything
 except HMR logs.
 
+>Note: you don't need to specify this addon in `main.js` addons section (see [details](#panel))
+
 If you want to enable HMR messages, do the following:
 
 ```js
-// config.js
+// preview.js
 
 import { setConsoleOptions } from '@storybook/addon-console';
 
@@ -79,7 +81,7 @@ You'll receive console outputs as a `console`, `warn` and `error` actions in the
 stories they come. In this case, add `withConsole` decorator:
 
 ```js
-// config.js
+// preview.js
 
 import { addDecorator } from '@storybook/react';
 import { withConsole } from '@storybook/addon-console';
@@ -93,7 +95,20 @@ behavior by passing options to `withConsole` or `setConsoleOptions` methods, bot
 
 ### Panel
 
-Addon console don't have own UI panel to output logs, it use `addon-console` instead. Make sure that `addons.js` contains this line:
+Addon console don't have own UI panel to output logs, it use `addon-console` instead. Make sure that `main.js` contains this line:
+
+```js
+// main.js
+module.exports = {
+  addons: [
+    '@storybook/addon-actions',
+  ],
+};
+
+
+```
+
+If you use `addons.js` it should be:
 
 ```js
 // addons.js
