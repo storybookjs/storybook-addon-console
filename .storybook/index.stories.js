@@ -74,7 +74,7 @@ const addConsole = (storyFn, context) => withConsole()(storyFn)(context);
 storiesOf('withConsole', module)
   // all messages prefixed with story name
   .addDecorator(addConsole)
-  .add('with Log', () => <Button onClick={() => console.log('Data:', 1, 3, 4)}>Log Button</Button>)
+  .add('with Log', () => <Button onClick={() => console.log(window.location)}>Log Button</Button>)
   .add('with Warning', () => (
     <Button onClick={() => console.warn('Data:', 1, 3, 4)}>Warn Button</Button>
   ))
