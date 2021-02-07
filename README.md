@@ -3,9 +3,9 @@
   <h1>
   <nobr>
     <a href="https://storybookjs.github.io/storybook-addon-console">
-      <img src="docs/logo.png" alt="logo" height="140">
+      <img src="https://github.com/storybookjs/storybook-addon-console/raw/master/docs/logo.png" alt="logo" height="140">
     </a>
-    <img src="docs/title.png" alt="Storybook Addon Console">
+    <img src="https://github.com/storybookjs/storybook-addon-console/raw/master/docs/title.png" alt="Storybook Addon Console">
     </nobr>
   </h1>
 
@@ -52,10 +52,10 @@ npm i @storybook/addon-console @storybook/addon-actions --save-dev
 
 ### Quick Start
 
-Just import it in your storybook `preview.js` or `config.js`:
+Just import it in your storybook config.js:
 
 ```js
-// preview.js
+// config.js
 
 import '@storybook/addon-console';
 ```
@@ -63,12 +63,10 @@ import '@storybook/addon-console';
 That's all. You'll start to receive all console messages, warnings, errors in your action logger panel. Everything
 except HMR logs.
 
->Note: you don't need to specify this addon in `main.js` addons section (see [details](#panel))
-
 If you want to enable HMR messages, do the following:
 
 ```js
-// preview.js
+// config.js
 
 import { setConsoleOptions } from '@storybook/addon-console';
 
@@ -81,7 +79,7 @@ You'll receive console outputs as a `console`, `warn` and `error` actions in the
 stories they come. In this case, add `withConsole` decorator:
 
 ```js
-// preview.js
+// config.js
 
 import { addDecorator } from '@storybook/react';
 import { withConsole } from '@storybook/addon-console';
@@ -95,20 +93,7 @@ behavior by passing options to `withConsole` or `setConsoleOptions` methods, bot
 
 ### Panel
 
-Addon console don't have own UI panel to output logs, it use `addon-actions` instead. Make sure that `main.js` contains this line:
-
-```js
-// main.js
-module.exports = {
-  addons: [
-    '@storybook/addon-actions',
-  ],
-};
-
-
-```
-
-If you use `addons.js` it should be:
+Addon console don't have own UI panel to output logs, it use `addon-console` instead. Make sure that `addons.js` contains this line:
 
 ```js
 // addons.js
@@ -204,10 +189,10 @@ This options could be passed to [withConsole](#storybookaddon-consolewithconsole
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| [panelExclude] | <code>Array.&lt;RegExp&gt;</code> | <code>[/[HMR]/]</code> | Optional. Anything matched to at least one of regular expressions will be excluded from output to Action Logger Panel |
-| [panelInclude] | <code>Array.&lt;RegExp&gt;</code> | <code>[]</code> | Optional. If set, only matched outputs will be shown in Action Logger. Higher priority than `panelExclude`. |
-| [consoleExclude] | <code>Array.&lt;RegExp&gt;</code> | <code>[]</code> | Optional. Anything matched to at least one of regular expressions will be excluded from DevTool console output |
-| [consoleInclude] | <code>Array.&lt;RegExp&gt;</code> | <code>[]</code> | Optional. If set, only matched outputs will be shown in console. Higher priority than `consoleExclude`. |
+| [panelExclude] | <code>[ &#x27;Array&#x27; ].&lt;RegExp&gt;</code> | <code>[/[HMR]/]</code> | Optional. Anything matched to at least one of regular expressions will be excluded from output to Action Logger Panel |
+| [panelInclude] | <code>[ &#x27;Array&#x27; ].&lt;RegExp&gt;</code> | <code>[]</code> | Optional. If set, only matched outputs will be shown in Action Logger. Higher priority than `panelExclude`. |
+| [consoleExclude] | <code>[ &#x27;Array&#x27; ].&lt;RegExp&gt;</code> | <code>[]</code> | Optional. Anything matched to at least one of regular expressions will be excluded from DevTool console output |
+| [consoleInclude] | <code>[ &#x27;Array&#x27; ].&lt;RegExp&gt;</code> | <code>[]</code> | Optional. If set, only matched outputs will be shown in console. Higher priority than `consoleExclude`. |
 | [log] | <code>string</code> | <code>&quot;console&quot;</code> | Optional. The marker to display `console.log` outputs in Action Logger |
 | [warn] | <code>string</code> | <code>&quot;warn&quot;</code> | Optional. The marker to display warnings in Action Logger |
 | [error] | <code>string</code> | <code>&quot;error&quot;</code> | Optional. The marker to display errors in Action Logger |

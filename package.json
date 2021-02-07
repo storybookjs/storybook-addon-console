@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "start-storybook -p 9009 --ci",
-    "prepare": "npx --ignore-existing @usulpro/package-prepare",
+    "prepare": "package-prepare",
     "build:tests": "rm -rdf .jest-dist && babel ./src -d ./.jest-dist -s",
     "build:readme.md": "jsdoc2md -t docs/readme.hbs -c docs/jsdoc.config.json src/*.js  > README.md; echo",
     "build:readme": "jsdoc2md -t docs/readme.hbs -c docs/jsdoc.config.json src/*.js  > README; echo",
@@ -32,7 +32,14 @@
     "type": "git",
     "url": "https://github.com/storybooks/storybook-addon-console.git"
   },
+  "storybook": {
+    "displayName": "Console",
+    "icon": "https://github.com/storybookjs/storybook-addon-console/raw/master/docs/icon.png"
+  },
   "keywords": [
+    "storybook-addons",
+    "debug",
+    "code",
     "storybook",
     "storybookjs",
     "storybook-addon",
