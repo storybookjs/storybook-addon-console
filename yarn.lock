@@ -2409,9 +2409,9 @@
     source-map "^0.6.0"
 
 "@usulpro/package-prepare@^1.1.4":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@usulpro/package-prepare/-/package-prepare-1.3.0.tgz#618e80e0229f88ecbe9f306233b3937b10e92515"
-  integrity sha512-vu26B9+YaZsZONr3snN/GI3J3JZjD+2nQapdD6tcOWxHmUEvei8T77wTcxjc6IfkadPPCmk7oQHr95pJbhGu1g==
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@usulpro/package-prepare/-/package-prepare-1.3.1.tgz#781993afd800c1a8509313a67136b9b01fab48f7"
+  integrity sha512-EutRTP1cTkPL0LtGXtQKwqJTXvCNU3KWPLY8RYdnaGCuFxjgWUyh2W6+jpGQOQdm/hopQZG2sisefeidLq7+xg==
   dependencies:
     chalk "^2.4.2"
     read-pkg-up "^7.0.0"

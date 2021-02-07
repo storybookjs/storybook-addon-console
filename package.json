@@ -1,5 +1,5 @@
 {
-  "version": "1.2.2",
+  "version": "1.2.3",
   "name": "@storybook/addon-console",
   "author": "Oleg Proskurin (https://github.com/UsulPro)",
   "description": "Storybook addon for redirecting console output into action logger panel",
@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "start-storybook -p 9009 --ci",
-    "prepare": "package-prepare",
+    "prepare": "package-prepare && npx typescript 'src/index.js' --declaration --allowJs --emitDeclarationOnly --outDir dist",
     "build:tests": "rm -rdf .jest-dist && babel ./src -d ./.jest-dist -s",
     "build:readme.md": "jsdoc2md -t docs/readme.hbs -c docs/jsdoc.config.json src/*.js  > README.md; echo",
     "build:readme": "jsdoc2md -t docs/readme.hbs -c docs/jsdoc.config.json src/*.js  > README; echo",
@@ -22,7 +22,11 @@
     "dev:docs": "nodemon --config docs/nodemon.json -x 'npm run build:docs'",
     "debug": "node --debug-brk --inspect npm test"
   },
+  "packagePrepare": {
+    "--copy-files": null
+  },
   "main": "dist/index",
+  "types": "dist/index.d.ts",
   "homepage": "https://github.com/storybooks/storybook-addon-console",
   "bugs": {
     "url": "https://github.com/storybooks/storybook-addon-console/issues"
