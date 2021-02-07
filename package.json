@@ -79,7 +79,6 @@
     "prettier": "^1.5.3",
     "prop-types": "^15.5.10",
     "react": "^16.4.0",
-    "react-chromatic": "^0.8.4",
     "react-dom": "^16.4.0",
     "react-scripts": "2.0.5",
     "react-test-renderer": "^16.4.0",
