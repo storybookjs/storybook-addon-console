@@ -2,7 +2,7 @@
   "version": "1.2.3",
   "name": "@storybook/addon-console",
   "author": "Oleg Proskurin (https://github.com/UsulPro)",
-  "description": "Storybook addon for redirecting console output into action logger panel",
+  "description": "Show console output like logs, errors, and warnings in the Storybook",
   "dependencies": {
     "global": "^4.3.2"
   },
@@ -38,7 +38,7 @@
   },
   "storybook": {
     "displayName": "Console",
-    "icon": "https://github.com/storybookjs/storybook-addon-console/raw/master/docs/icon.png"
+    "icon": "https://user-images.githubusercontent.com/263385/101991668-479cc600-3c7c-11eb-9aac-09cd7b5b9f97.png"
   },
   "keywords": [
     "storybook-addons",
