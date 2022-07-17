@@ -49,7 +49,7 @@ try [live demo](https://storybookjs.github.io/storybook-addon-console)
 ### Install
 
 ```shell
-yarn add-dev @storybook/addon-console @storybook/addon-actions
+yarn add --dev @storybook/addon-console @storybook/addon-actions
 ```
 
 ### Quick Start
