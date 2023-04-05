@@ -5,7 +5,7 @@
  *
  */
 
-import window from 'global/window';
+import { global } from '@storybook/global';
 import { action, configureActions } from '@storybook/addon-actions';
 
 import { reactStory } from './react-decorator';
@@ -90,7 +90,7 @@ function setScope(options) {
     if (toConsole.length) cLogger.error(...toConsole);
   };
 
-  window.onerror = (...args) => {
+  global.onerror = (...args) => {
     const toPanel = shouldDisplay([args[0]], panelExclude, panelInclude);
     const toConsole = shouldDisplay([args[0]], consoleExclude, consoleInclude);
     if (toPanel.length) aLogger.error(...args);
@@ -155,12 +155,12 @@ export function setConsoleOptions(optionsOrFn) {
 }
 
 function handleStoryLogs() {
-  switch (window.STORYBOOK_ENV) {
+  switch (global.STORYBOOK_ENV) {
     case 'react':
       return reactStory;
     default:
       logger.warn(
-        `Warning! withConsole doesn't support @storybook/${window.STORYBOOK_ENV}. Use setConsoleOptions instead`
+        `Warning! withConsole doesn't support @storybook/${global.STORYBOOK_ENV}. Use setConsoleOptions instead`
       );
       return story => story;
   }
@@ -170,10 +170,10 @@ function addConsole(storyFn, context, consoleOptions) {
   const prevOptions = { ...currentOptions };
   const logNames = context
     ? {
-        log: `${context.kind}/${context.story}`,
-        warn: `${context.kind}/${context.story}/warn`,
-        error: `${context.kind}/${context.story}/error`,
-      }
+      log: `${context.kind}/${context.story}`,
+      warn: `${context.kind}/${context.story}/warn`,
+      error: `${context.kind}/${context.story}/error`,
+    }
     : {};
 
   const options = {

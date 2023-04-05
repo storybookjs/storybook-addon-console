@@ -4,7 +4,7 @@
   "author": "Oleg Proskurin (https://github.com/UsulPro)",
   "description": "Show console output like logs, errors, and warnings in the Storybook",
   "dependencies": {
-    "global": "^4.3.2"
+    "@storybook/global": "^5.0.0"
   },
   "scripts": {
     "start": "start-storybook -p 9009 --ci",
