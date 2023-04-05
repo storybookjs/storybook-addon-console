@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "start-storybook -p 9009 --ci",
-    "prepare": "package-prepare && npx typescript 'src/index.js' --declaration --allowJs --emitDeclarationOnly --outDir dist",
+    "prepare": "package-prepare && yarn build",
+    "build": "tsc \"src/index.js\" --declaration --allowJs --emitDeclarationOnly --outDir dist",
     "build:tests": "rm -rdf .jest-dist && babel ./src -d ./.jest-dist -s",
     "build:readme.md": "jsdoc2md -t docs/readme.hbs -c docs/jsdoc.config.json src/*.js  > README.md; echo",
     "build:readme": "jsdoc2md -t docs/readme.hbs -c docs/jsdoc.config.json src/*.js  > README; echo",
@@ -93,6 +94,7 @@
     "react-dom": "^16.4.0",
     "react-scripts": "2.0.5",
     "react-test-renderer": "^16.4.0",
+    "typescript": "^5.0.3",
     "url-loader": "^2.1.0"
   },
   "peerDependencies": {
