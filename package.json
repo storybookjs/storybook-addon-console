@@ -9,10 +9,10 @@
   "scripts": {
     "start": "start-storybook -p 9009 --ci",
     "prepare": "package-prepare && yarn build",
-    "build": "tsc \"src/index.js\" --declaration --allowJs --emitDeclarationOnly --outDir dist",
+    "build": "tsc \"src/index.jsx\" --declaration --allowJs --emitDeclarationOnly --outDir dist",
     "build:tests": "rm -rdf .jest-dist && babel ./src -d ./.jest-dist -s",
-    "build:readme.md": "jsdoc2md -t docs/readme.hbs -c docs/jsdoc.config.json src/*.js  > README.md; echo",
-    "build:readme": "jsdoc2md -t docs/readme.hbs -c docs/jsdoc.config.json src/*.js  > README; echo",
+    "build:readme.md": "jsdoc2md -t docs/readme.hbs -c docs/jsdoc.config.json src/*.jsx  > README.md; echo",
+    "build:readme": "jsdoc2md -t docs/readme.hbs -c docs/jsdoc.config.json src/*.jsx  > README; echo",
     "build:docs": "yarn build:readme.md && yarn build:readme",
     "build:storybook": "build-storybook",
     "deploy:storybook": "storybook-to-ghpages",
