@@ -1,5 +1,5 @@
 {
-  "version": "1.2.3",
+  "version": "2.0.0",
   "name": "@storybook/addon-console",
   "author": "Oleg Proskurin (https://github.com/UsulPro)",
   "description": "Show console output like logs, errors, and warnings in the Storybook",
