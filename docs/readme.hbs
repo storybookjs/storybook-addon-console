@@ -49,7 +49,7 @@ try [live demo](https://storybookjs.github.io/storybook-addon-console)
 ### Install
 
 ```shell
-npm i @storybook/addon-console @storybook/addon-actions --save-dev
+yarn add -D @storybook/addon-console @storybook/addon-actions
 ```
 
 ### Quick Start
@@ -72,8 +72,9 @@ If you want to enable HMR messages, do the following:
 
 import { setConsoleOptions } from '@storybook/addon-console';
 
+const panelExclude = setConsoleOptions({}).panelExclude;
 setConsoleOptions({
-panelExclude: [],
+  panelExclude: [...panelExclude, /deprecated/],
 });
 ```
 
@@ -81,12 +82,15 @@ You'll receive console outputs as a `console`, `warn` and `error` actions in the
 stories they come. In this case, add `withConsole` decorator:
 
 ```js
-// config.js
+// preview.js
 
-import { addDecorator } from '@storybook/react';
+import type { Preview } from '@storybook/react';
 import { withConsole } from '@storybook/addon-console';
 
-addDecorator((storyFn, context) => withConsole()(storyFn)(context));
+const preview: Preview = {
+  decorators: [(storyFn, context) => withConsole()(storyFn)(context)],
+  // ...
+};
 ```
 
 After that your messages in Action Logger will be prefixed with the story path, like `molecules/atoms/electron:
@@ -95,12 +99,16 @@ behavior by passing options to `withConsole` or `setConsoleOptions` methods, bot
 
 ### Panel
 
-Addon console don't have own UI panel to output logs, it use `addon-console` instead. Make sure that `addons.js` contains this line:
+Addon console don't have own UI panel to output logs, it use `addon-console` instead. Make sure that `main.js` contains this line:
 
 ```js
-// addons.js
+// main.js
 
-import '@storybook/addon-actions/register';
+export default {
+  addons: [
+    "@storybook/addon-actions/register",
+  ],
+};
 ```
 
 
@@ -110,12 +118,16 @@ import '@storybook/addon-actions/register';
 
 ## Contributing
 
-`npm start` runs example Storybook. Then you can edit source code located in the `src` folder and example storybook in
+`yarn storybook` runs example Storybook. Then you can edit source code located in the `src` folder and example storybook in
 the `stories` folder.
 
 ### Run tests
 
-Run `npm run test`. It starts jest test in `watch` mode.
+Run `yarn test`.
+
+### Run tests in watch mode
+
+Run `yarn tdd`.
 
 ### Test coverage
 
@@ -128,7 +140,7 @@ breakpoints in `*.test.js` and `*.js` files.
 
 ### Readme editing
 
-Please, don't edit this `README.md` directly. Run `npm run dev:docs` and change `docs/readme.hbs` and JSDoc comments
+Please, don't edit this `README.md` directly. Run `yarn dev:docs` and change `docs/readme.hbs` and JSDoc comments
 withing `src` instead.
 
 ## Credits

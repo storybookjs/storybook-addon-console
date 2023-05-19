@@ -122,7 +122,10 @@ const detectOptions = prop => {
  * import { withConsole } from `@storybook/addon-console`;
  *
  * const optionsCallback = (options) => ({panelExclude: [...options.panelExclude, /Warning/]});
- * addDecorator((storyFn, context) => withConsole(optionsCallback)(storyFn)(context));
+ * export default {
+ *   title: 'Button',
+ *   decorators: [withConsole(optionsCallback)],
+ * };
  *
  * @callback optionsCallback
  * @param {addonOptions} currentOptions - the current {@link addonOptions}
@@ -170,10 +173,10 @@ function addConsole(storyFn, context, consoleOptions) {
   const prevOptions = { ...currentOptions };
   const logNames = context
     ? {
-      log: `${context.kind}/${context.story}`,
-      warn: `${context.kind}/${context.story}/warn`,
-      error: `${context.kind}/${context.story}/error`,
-    }
+        log: `${context.kind}/${context.story}`,
+        warn: `${context.kind}/${context.story}/warn`,
+        error: `${context.kind}/${context.story}/error`,
+      }
     : {};
 
   const options = {
@@ -185,7 +188,11 @@ function addConsole(storyFn, context, consoleOptions) {
   setScope(options);
   const story = storyFn();
   const wrapStory = handleStoryLogs();
-  const wrappedStory = wrapStory(story, () => setScope(options), () => setScope(currentOptions));
+  const wrappedStory = wrapStory(
+    story,
+    () => setScope(options),
+    () => setScope(currentOptions)
+  );
 
   currentOptions = prevOptions;
   setScope(currentOptions);
@@ -201,22 +208,26 @@ function addConsole(storyFn, context, consoleOptions) {
  * @return {function} wrappedStoryFn
  *
  * @example
- * import { storiesOf } from '@storybook/react';
- * import { withConsole } from '@storybook/addon-console';
- *
- * storiesOf('withConsole', module)
- *  .addDecorator((storyFn, context) => withConsole()(storyFn)(context))
- *  .add('with Log', () => <Button onClick={() => console.log('Data:', 1, 3, 4)}>Log Button</Button>)
- *  .add('with Warning', () => <Button onClick={() => console.warn('Data:', 1, 3, 4)}>Warn Button</Button>)
- *  .add('with Error', () => <Button onClick={() => console.error('Test Error')}>Error Button</Button>)
- *  .add('with Uncatched Error', () =>
- *    <Button onClick={() => console.log('Data:', T.buu.foo)}>Throw Button</Button>
- *  )
+import type { Meta, StoryObj } from '@storybook/react';
+import { withConsole } from '@storybook/addon-console';
+
+const meta: Meta<typeof Button> = {
+  title: 'Example/Button',
+  component: Button,
+};
+
+export default meta;
+type Story = StoryObj<typeof Button>;
+
+export const Primary: Story = {
+  args: {
+    primary: true,
+    label: 'Button',
+    onClick: () => console.log(['Data:', 1, 3, 4]),
+  },
+};
  // Action Logger Panel:
  // withConsole/with Log: ["Data:", 1, 3, 4]
- // withConsole/with Warning warn: ["Data:", 1, 3, 4]
- // withConsole/with Error error: ["Test Error"]
- // withConsole/with Uncatched Error error: ["Uncaught TypeError: Cannot read property 'foo' of undefined", "http://localhost:9009/static/preview.bundle.js", 51180, 42, Object]
  */
 export function withConsole(optionsOrFn) {
   const newOptions = detectOptions(optionsOrFn);
