@@ -6,5 +6,5 @@ module.exports = {
   // collectCoverageFrom: ['<rootDir>/src/*.{js,jsx}'],
   coverageDirectory: '.coverage',
   testEnvironment: 'jsdom',
-  setupTestFrameworkScriptFile: './node_modules/jest-enzyme/lib/index.js',
+  setupFilesAfterEnv: ['./node_modules/jest-enzyme/lib/index.js'],
 };
