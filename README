@@ -99,7 +99,7 @@ behavior by passing options to `withConsole` or `setConsoleOptions` methods, bot
 
 ### Panel
 
-Addon console don't have own UI panel to output logs, it use `addon-console` instead. Make sure that `main.js` contains this line:
+Addon console don't have own UI panel to output logs, it use `addon-actions` instead. Make sure that `main.js` contains this line:
 
 ```js
 // main.js
