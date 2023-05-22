@@ -49,7 +49,7 @@ try [live demo](https://storybookjs.github.io/storybook-addon-console)
 ### Install
 
 ```shell
-yarn add --dev @storybook/addon-console @storybook/addon-actions
+yarn add -D @storybook/addon-console @storybook/addon-actions
 ```
 
 ### Quick Start
@@ -72,8 +72,9 @@ If you want to enable HMR messages, do the following:
 
 import { setConsoleOptions } from '@storybook/addon-console';
 
+const panelExclude = setConsoleOptions({}).panelExclude;
 setConsoleOptions({
-panelExclude: [],
+  panelExclude: [...panelExclude, /deprecated/],
 });
 ```
 
@@ -81,12 +82,15 @@ You'll receive console outputs as a `console`, `warn` and `error` actions in the
 stories they come. In this case, add `withConsole` decorator:
 
 ```js
-// config.js
+// preview.js
 
-import { addDecorator } from '@storybook/react';
+import type { Preview } from '@storybook/react';
 import { withConsole } from '@storybook/addon-console';
 
-addDecorator((storyFn, context) => withConsole()(storyFn)(context));
+const preview: Preview = {
+  decorators: [(storyFn, context) => withConsole()(storyFn)(context)],
+  // ...
+};
 ```
 
 After that your messages in Action Logger will be prefixed with the story path, like `molecules/atoms/electron:
@@ -95,12 +99,16 @@ behavior by passing options to `withConsole` or `setConsoleOptions` methods, bot
 
 ### Panel
 
-Addon console don't have own UI panel to output logs, it use `addon-console` instead. Make sure that `addons.js` contains this line:
+Addon console don't have own UI panel to output logs, it use `addon-console` instead. Make sure that `main.js` contains this line:
 
 ```js
-// addons.js
+// main.js
 
-import '@storybook/addon-actions/register';
+export default {
+  addons: [
+    "@storybook/addon-actions/register",
+  ],
+};
 ```
 
 
@@ -164,22 +172,26 @@ If you don't pass {`log`, `warn`, `error`} in options argument it'll create them
 
 **Example**  
 ```js
-import { storiesOf } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { withConsole } from '@storybook/addon-console';
 
-storiesOf('withConsole', module)
- .addDecorator((storyFn, context) => withConsole()(storyFn)(context))
- .add('with Log', () => <Button onClick={() => console.log('Data:', 1, 3, 4)}>Log Button</Button>)
- .add('with Warning', () => <Button onClick={() => console.warn('Data:', 1, 3, 4)}>Warn Button</Button>)
- .add('with Error', () => <Button onClick={() => console.error('Test Error')}>Error Button</Button>)
- .add('with Uncatched Error', () =>
-   <Button onClick={() => console.log('Data:', T.buu.foo)}>Throw Button</Button>
- )
+const meta: Meta<typeof Button> = {
+  title: 'Example/Button',
+  component: Button,
+};
+
+export default meta;
+type Story = StoryObj<typeof Button>;
+
+export const Primary: Story = {
+  args: {
+    primary: true,
+    label: 'Button',
+    onClick: () => console.log(['Data:', 1, 3, 4]),
+  },
+};
  // Action Logger Panel:
  // withConsole/with Log: ["Data:", 1, 3, 4]
- // withConsole/with Warning warn: ["Data:", 1, 3, 4]
- // withConsole/with Error error: ["Test Error"]
- // withConsole/with Uncatched Error error: ["Uncaught TypeError: Cannot read property 'foo' of undefined", "http://localhost:9009/static/preview.bundle.js", 51180, 42, Object]
 ```
 <a name="module_@storybook/addon-console..addonOptions"></a>
 
@@ -216,18 +228,25 @@ This callback could be passed to [setConsoleOptions](setConsoleOptions) or [with
 import { withConsole } from `@storybook/addon-console`;
 
 const optionsCallback = (options) => ({panelExclude: [...options.panelExclude, /Warning/]});
-addDecorator((storyFn, context) => withConsole(optionsCallback)(storyFn)(context));
+export default {
+  title: 'Button',
+  decorators: [withConsole(optionsCallback)],
+};
 ```
 
 
 ## Contributing
 
-`npm start` runs example Storybook. Then you can edit source code located in the `src` folder and example storybook in
+`yarn storybook` runs example Storybook. Then you can edit source code located in the `src` folder and example storybook in
 the `stories` folder.
 
 ### Run tests
 
-Run `npm run test`. It starts jest test in `watch` mode.
+Run `yarn test`.
+
+### Run tests in watch mode
+
+Run `yarn tdd`.
 
 ### Test coverage
 
@@ -240,7 +259,7 @@ breakpoints in `*.test.js` and `*.js` files.
 
 ### Readme editing
 
-Please, don't edit this `README.md` directly. Run `npm run dev:docs` and change `docs/readme.hbs` and JSDoc comments
+Please, don't edit this `README.md` directly. Run `yarn dev:docs` and change `docs/readme.hbs` and JSDoc comments
 withing `src` instead.
 
 ## Credits
