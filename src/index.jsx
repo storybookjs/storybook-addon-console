@@ -21,6 +21,7 @@ const cLogger = {
   log: logger.log.bind(logger),
   warn: logger.warn.bind(logger),
   error: logger.error.bind(logger),
+  dir: logger.dir.bind(logger),
 };
 
 /**
@@ -32,6 +33,7 @@ const cLogger = {
  * @property {string} [log = console] - Optional. The marker to display `console.log` outputs in Action Logger
  * @property {string} [warn = warn] - Optional. The marker to display warnings in Action Logger
  * @property {string} [error = error] - Optional. The marker to display errors in Action Logger
+ * @property {string} [dir = dir] - Optional. The marker to display `console.dir` outputs in Action Logger
  */
 const addonOptions = {
   panelExclude: [/\[HMR\]/],
@@ -41,6 +43,7 @@ const addonOptions = {
   log: 'console',
   warn: 'warn',
   error: 'error',
+  dir: 'dir',
 };
 
 let currentOptions = addonOptions;
@@ -49,6 +52,7 @@ const createLogger = options => ({
   log: action(options.log),
   warn: action(options.warn),
   error: action(options.error),
+  dir: action(options.dir),
 });
 
 const shouldDisplay = (messages, exclude, include) => {
@@ -88,6 +92,13 @@ function setScope(options) {
     const toConsole = shouldDisplay(args, consoleExclude, consoleInclude);
     if (toPanel.length) aLogger.error(...toPanel);
     if (toConsole.length) cLogger.error(...toConsole);
+  };
+
+  logger.dir = (...args) => {
+    const toPanel = shouldDisplay(args, panelExclude, panelInclude);
+    const toConsole = shouldDisplay(args, consoleExclude, consoleInclude);
+    if (toPanel.length) aLogger.dir(...toPanel);
+    if (toConsole.length) cLogger.dir(...toConsole);
   };
 
   global.onerror = (...args) => {
