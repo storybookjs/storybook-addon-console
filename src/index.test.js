@@ -5,11 +5,13 @@ import PropTypes from 'prop-types';
 const consoleLog = jest.fn();
 const consoleWarn = jest.fn();
 const consoleError = jest.fn();
+const consoleDir = jest.fn();
 
 global.console = {
   log: consoleLog,
   warn: consoleWarn,
   error: consoleError,
+  dir: consoleDir,
 };
 
 const { withConsole, setConsoleOptions } = require('./');
@@ -40,6 +42,7 @@ describe('addon Console', () => {
     log: 'console',
     warn: 'warn',
     error: 'error',
+    dir: 'dir',
   };
   describe('global scope', () => {
     describe('check options `setConsoleOptions`', () => {
@@ -104,6 +107,13 @@ describe('addon Console', () => {
         expect(consoleError.mock.calls[0]).toEqual([logString]);
       });
 
+      it('should output `console.dir` to panel and console', () => {
+        logger.dir(logString);
+        expect(aLogResults.msg).toBe(defaultOptions.dir);
+        expect(aLogResults.data).toEqual([logString]);
+        expect(consoleDir.mock.calls[0]).toEqual([logString]);
+      });
+
       it('should catch error and output to panel and console', () => {
         const isCatched = global.window.onerror.call(global, logString, 'url', 2);
         expect(aLogResults.msg).toBe(defaultOptions.error);
@@ -163,7 +173,10 @@ describe('addon Console', () => {
 
     describe('exclude everything via `...Include: [/(?!.*)/]`', () => {
       beforeEach(() => {
-        setConsoleOptions({ panelInclude: [/(?!.*)/], consoleInclude: [/(?!.*)/] });
+        setConsoleOptions({
+          panelInclude: [/(?!.*)/],
+          consoleInclude: [/(?!.*)/],
+        });
       });
       it('should not log anything at all', () => {
         logger.log(logString);
@@ -177,6 +190,11 @@ describe('addon Console', () => {
       });
       it('should not error anything at all', () => {
         logger.error(logString);
+        expect(aLogResults).toEqual({});
+        expect(consoleLog.mock.calls[0]).toBeUndefined();
+      });
+      it('should not dir anything at all', () => {
+        logger.dir(logString);
         expect(aLogResults).toEqual({});
         expect(consoleLog.mock.calls[0]).toBeUndefined();
       });
