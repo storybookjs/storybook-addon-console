@@ -1,5 +1,5 @@
 /**
- * It handles `console.log`, `console.warn`, and `console.error` methods and not catched errors. By default, it just reflects all console messages in the Action Logger Panel (should be installed as a peerDependency) except [HMR] logs.
+ * It handles `console.log`, `console.warn`, `console.dir`, and `console.error` methods and not catched errors. By default, it just reflects all console messages in the Action Logger Panel (should be installed as a peerDependency) except [HMR] logs.
  * @module @storybook/addon-console
  *
  *
@@ -21,6 +21,7 @@ const cLogger = {
   log: logger.log.bind(logger),
   warn: logger.warn.bind(logger),
   error: logger.error.bind(logger),
+  dir: logger.dir.bind(logger),
 };
 
 /**
@@ -32,6 +33,7 @@ const cLogger = {
  * @property {string} [log = console] - Optional. The marker to display `console.log` outputs in Action Logger
  * @property {string} [warn = warn] - Optional. The marker to display warnings in Action Logger
  * @property {string} [error = error] - Optional. The marker to display errors in Action Logger
+ * @property {string} [dir = dir] - Optional. The marker to display `console.dir` outputs in Action Logger
  */
 const addonOptions = {
   panelExclude: [/\[HMR\]/],
@@ -41,6 +43,7 @@ const addonOptions = {
   log: 'console',
   warn: 'warn',
   error: 'error',
+  dir: 'dir',
 };
 
 let currentOptions = addonOptions;
@@ -49,6 +52,7 @@ const createLogger = options => ({
   log: action(options.log),
   warn: action(options.warn),
   error: action(options.error),
+  dir: action(options.dir),
 });
 
 const shouldDisplay = (messages, exclude, include) => {
@@ -88,6 +92,13 @@ function setScope(options) {
     const toConsole = shouldDisplay(args, consoleExclude, consoleInclude);
     if (toPanel.length) aLogger.error(...toPanel);
     if (toConsole.length) cLogger.error(...toConsole);
+  };
+
+  logger.dir = (...args) => {
+    const toPanel = shouldDisplay(args, panelExclude, panelInclude);
+    const toConsole = shouldDisplay(args, consoleExclude, consoleInclude);
+    if (toPanel.length) aLogger.dir(...toPanel);
+    if (toConsole.length) cLogger.dir(...toConsole);
   };
 
   global.onerror = (...args) => {
@@ -176,6 +187,7 @@ function addConsole(storyFn, context, consoleOptions) {
         log: `${context.kind}/${context.story}`,
         warn: `${context.kind}/${context.story}/warn`,
         error: `${context.kind}/${context.story}/error`,
+        dir: `${context.kind}/${context.story}/dir`,
       }
     : {};
 
@@ -201,7 +213,7 @@ function addConsole(storyFn, context, consoleOptions) {
 
 /**
  * Wraps your stories with specified addon options.
- * If you don't pass {`log`, `warn`, `error`} in options argument it'll create them from context for each story individually. Hence you'll see from what exact story you got a log or error. You can log from component's lifecycle methods or within your story.
+ * If you don't pass {`log`, `warn`, `error`, `dir`} in options argument it'll create them from context for each story individually. Hence you'll see from what exact story you got a log or error. You can log from component's lifecycle methods or within your story.
  * @param {addonOptions|optionsCallback} [optionsOrFn]
  * @see [addonOptions]{@link #storybookaddon-consolesetconsoleoptionsoptionsorfn--addonoptions}
  * @see [optionsCallback]{@link #storybookaddon-consoleoptionscallback--addonoptions}
