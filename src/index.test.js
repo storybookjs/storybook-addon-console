@@ -6,12 +6,14 @@ const consoleLog = jest.fn();
 const consoleWarn = jest.fn();
 const consoleError = jest.fn();
 const consoleDir = jest.fn();
+const consoleInfo = jest.fn();
 
 global.console = {
   log: consoleLog,
   warn: consoleWarn,
   error: consoleError,
   dir: consoleDir,
+  info: consoleInfo,
 };
 
 const { withConsole, setConsoleOptions } = require('./');
@@ -43,6 +45,7 @@ describe('addon Console', () => {
     warn: 'warn',
     error: 'error',
     dir: 'dir',
+    info: 'info',
   };
   describe('global scope', () => {
     describe('check options `setConsoleOptions`', () => {
@@ -112,6 +115,13 @@ describe('addon Console', () => {
         expect(aLogResults.msg).toBe(defaultOptions.dir);
         expect(aLogResults.data).toEqual([logString]);
         expect(consoleDir.mock.calls[0]).toEqual([logString]);
+      });
+
+      it('should output `console.info` to panel and console', () => {
+        logger.info(logString);
+        expect(aLogResults.msg).toBe(defaultOptions.info);
+        expect(aLogResults.data).toEqual([logString]);
+        expect(consoleInfo.mock.calls[0]).toEqual([logString]);
       });
 
       it('should catch error and output to panel and console', () => {
@@ -195,6 +205,11 @@ describe('addon Console', () => {
       });
       it('should not dir anything at all', () => {
         logger.dir(logString);
+        expect(aLogResults).toEqual({});
+        expect(consoleLog.mock.calls[0]).toBeUndefined();
+      });
+      it('should not info anything at all', () => {
+        logger.info(logString);
         expect(aLogResults).toEqual({});
         expect(consoleLog.mock.calls[0]).toBeUndefined();
       });
