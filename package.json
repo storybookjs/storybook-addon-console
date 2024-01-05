@@ -1,46 +1,7 @@
 {
-  "version": "2.0.0",
   "name": "@storybook/addon-console",
-  "author": "Oleg Proskurin (https://github.com/UsulPro)",
+  "version": "2.0.0",
   "description": "Show console output like logs, errors, and warnings in the Storybook",
-  "dependencies": {
-    "@storybook/global": "^5.0.0"
-  },
-  "scripts": {
-    "prepare": "package-prepare && yarn build",
-    "build": "tsc \"src/index.jsx\" --declaration --allowJs --emitDeclarationOnly --outDir dist",
-    "build:tests": "rm -rdf .jest-dist && babel ./src -d ./.jest-dist -s",
-    "build:readme.md": "jsdoc2md -t docs/readme.hbs -c docs/jsdoc.config.json src/*.jsx  > README.md; echo",
-    "build:readme": "jsdoc2md -t docs/readme.hbs -c docs/jsdoc.config.json src/*.jsx  > README; echo",
-    "build:docs": "yarn build:readme.md && yarn build:readme",
-    "deploy:storybook": "storybook-to-ghpages",
-    "lint": "eslint ./src",
-    "test": "jest",
-    "tdd": "jest --watch",
-    "test:publish": "npm pack",
-    "dev:docs": "nodemon --config docs/nodemon.json -x 'npm run build:docs'",
-    "debug": "node --debug-brk --inspect npm test",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
-  },
-  "packagePrepare": {
-    "--copy-files": null
-  },
-  "main": "dist/index",
-  "types": "dist/index.d.ts",
-  "homepage": "https://github.com/storybooks/storybook-addon-console",
-  "bugs": {
-    "url": "https://github.com/storybooks/storybook-addon-console/issues"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/storybooks/storybook-addon-console.git"
-  },
-  "storybook": {
-    "displayName": "Console",
-    "icon": "https://user-images.githubusercontent.com/263385/101991668-479cc600-3c7c-11eb-9aac-09cd7b5b9f97.png"
-  },
   "keywords": [
     "storybook-addons",
     "debug",
@@ -61,6 +22,39 @@
     "redirect",
     "devtools"
   ],
+  "homepage": "https://github.com/storybooks/storybook-addon-console",
+  "bugs": {
+    "url": "https://github.com/storybooks/storybook-addon-console/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/storybooks/storybook-addon-console.git"
+  },
+  "license": "MIT",
+  "author": "Oleg Proskurin (https://github.com/UsulPro)",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "build-storybook": "storybook build",
+    "build:docs": "yarn build:readme.md && yarn build:readme",
+    "build:readme": "jsdoc2md -t docs/readme.hbs -c docs/jsdoc.config.json src/*.jsx  > README; echo",
+    "build:readme.md": "jsdoc2md -t docs/readme.hbs -c docs/jsdoc.config.json src/*.jsx  > README.md; echo",
+    "build:tests": "rm -rdf .jest-dist && babel ./src -d ./.jest-dist -s",
+    "debug": "node --debug-brk --inspect npm test",
+    "deploy:storybook": "storybook-to-ghpages",
+    "dev:docs": "nodemon --config docs/nodemon.json -x 'npm run build:docs'",
+    "lint": "eslint ./src",
+    "prepare": "yarn build",
+    "storybook": "storybook dev",
+    "tdd": "jest --watch",
+    "test": "jest",
+    "test:publish": "npm pack"
+  },
+  "dependencies": {
+    "@storybook/global": "^5.0.0"
+  },
   "devDependencies": {
     "@babel/cli": "^7.21.5",
     "@babel/core": "^7.21.8",
@@ -78,7 +72,6 @@
     "@storybook/react-vite": "^7.0.12",
     "@storybook/testing-library": "^0.0.14-next.2",
     "@storybook/theming": "^7.0.12",
-    "@usulpro/package-prepare": "^1.1.4",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^9.1.2",
     "enzyme": "^3.3.0",
@@ -99,15 +92,20 @@
     "nodemon": "^1.12.0",
     "prettier": "^1.5.3",
     "prop-types": "^15.5.10",
-    "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-test-renderer": "^16.4.0",
     "storybook": "^7.0.12",
+    "tsup": "^8.0.1",
     "typescript": "^5.0.3",
     "url-loader": "^2.1.0",
     "vite": "^4.3.7"
   },
   "peerDependencies": {
-    "@storybook/addon-actions": "*"
+    "@storybook/addon-actions": "*",
+    "react": "*"
+  },
+  "storybook": {
+    "displayName": "Console",
+    "icon": "https://user-images.githubusercontent.com/263385/101991668-479cc600-3c7c-11eb-9aac-09cd7b5b9f97.png"
   }
 }
