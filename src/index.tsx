@@ -168,13 +168,13 @@ export function setConsoleOptions(optionsOrFn) {
   return currentOptions;
 }
 
-function handleStoryLogs() {
-  switch (global.STORYBOOK_ENV) {
+function handleStoryLogs(renderer) {
+  switch (renderer) {
     case 'react':
       return reactStory;
     default:
       logger.warn(
-        `Warning! withConsole doesn't support @storybook/${global.STORYBOOK_ENV}. Use setConsoleOptions instead`
+        `Warning! withConsole doesn't support @storybook/${renderer}. Use setConsoleOptions instead`
       );
       return story => story;
   }
@@ -199,7 +199,7 @@ function addConsole(storyFn, context, consoleOptions) {
 
   setScope(options);
   const story = storyFn();
-  const wrapStory = handleStoryLogs();
+  const wrapStory = handleStoryLogs(context.parameters.renderer);
   const wrappedStory = wrapStory(
     story,
     () => setScope(options),
@@ -241,7 +241,7 @@ export const Primary: Story = {
  // Action Logger Panel:
  // withConsole/with Log: ["Data:", 1, 3, 4]
  */
-export function withConsole(optionsOrFn) {
+export function withConsole(optionsOrFn?: any) {
   const newOptions = detectOptions(optionsOrFn);
   return storyFn => context => addConsole(storyFn, context, newOptions);
 }

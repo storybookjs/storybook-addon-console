@@ -1,0 +1,22 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compilerOptions": {
+    "strict": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "moduleResolution": "Bundler",
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "ES2022",
+    "jsx": "react",
+    "noImplicitAny": false,
+    "useDefineForClassFields": false,
+    "lib": [
+      "ES2022",
+      "dom"
+    ]
+  },
+}
