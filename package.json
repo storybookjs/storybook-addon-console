@@ -107,5 +107,11 @@
   "storybook": {
     "displayName": "Console",
     "icon": "https://user-images.githubusercontent.com/263385/101991668-479cc600-3c7c-11eb-9aac-09cd7b5b9f97.png"
+  },
+  "auto": {
+    "plugins": [
+      "npm",
+      "released"
+    ]
   }
 }
