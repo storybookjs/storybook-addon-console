@@ -1,6 +1,6 @@
 {
   "name": "@storybook/addon-console",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Show console output like logs, errors, and warnings in the Storybook",
   "keywords": [
     "storybook-addons",
