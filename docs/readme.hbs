@@ -84,10 +84,9 @@ stories they come. In this case, add `withConsole` decorator:
 ```js
 // preview.js
 
-import type { Preview } from '@storybook/react';
 import { withConsole } from '@storybook/addon-console';
 
-const preview: Preview = {
+const preview = {
   decorators: [(storyFn, context) => withConsole()(storyFn)(context)],
   // ...
 };
